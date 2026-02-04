@@ -1,32 +1,7 @@
 export function CTASection() {
   return (
-    <section className="md-card-hero relative overflow-hidden">
-      {/* Background effects */}
-      <div className="absolute inset-0">
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: "radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 60%)"
-          }}
-          aria-hidden="true"
-        />
-        {/* Diagonal accent */}
-        <div 
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `repeating-linear-gradient(
-              -45deg,
-              transparent,
-              transparent 30px,
-              var(--md-dragons-turq) 30px,
-              var(--md-dragons-turq) 31px
-            )`
-          }}
-          aria-hidden="true"
-        />
-      </div>
-      
-      <div className="relative p-6 sm:p-8 md:p-10">
+    <section className="md-card overflow-hidden">
+      <div className="p-6 sm:p-8 md:p-10">
         <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
           {/* Text */}
           <div>

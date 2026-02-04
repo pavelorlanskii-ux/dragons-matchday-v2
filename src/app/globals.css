@@ -2,45 +2,47 @@
 
 :root {
   /* ===== Dragons Brand System ===== */
-  --md-dragons-turq: #00D4FF;
-  --md-dragons-turq-dark: #00B8E6;
+  --md-dragons-blue: #0A2540;
+  --md-dragons-blue-light: #0F3A5C;
+  --md-dragons-orange: #E85D04;
+  --md-dragons-orange-dark: #D45A03;
+  --md-dragons-orange-light: #F07B2F;
+  --md-dragons-turq: #00B8E6;
+  --md-dragons-turq-dark: #0099C4;
   --md-dragons-turq-light: #33DDFF;
   --md-dragons-yellow: #FFD700;
   --md-dragons-yellow-dark: #E6C200;
   --md-dragons-yellow-light: #FFE44D;
-  --md-dragons-red: #FF4444;
-  --md-dragons-red-dark: #E63333;
 
   /* ===== Partner Overlay (BetBoom) ===== */
   --md-partner-accent: #FF6B00;
   --md-partner-accent-light: #FF8533;
-  --md-partner-accent-glow: rgba(255, 107, 0, 0.15);
+  --md-partner-accent-dark: #E85D04;
+  --md-partner-accent-glow: rgba(255, 107, 0, 0.2);
 
   /* ===== Surfaces ===== */
-  --md-bg: #050507;
-  --md-bg-secondary: #0C0C10;
-  --md-surface-1: #111116;
-  --md-surface-2: #18181D;
-  --md-surface-3: #1F1F26;
-  --md-surface-hover: #242430;
+  --md-bg: #041525;
+  --md-bg-secondary: #071E2F;
+  --md-surface-1: rgba(10, 37, 64, 0.85);
+  --md-surface-2: rgba(15, 45, 75, 0.9);
+  --md-surface-3: rgba(20, 55, 90, 0.85);
+  --md-surface-hover: rgba(25, 65, 105, 0.9);
   
   /* ===== Text ===== */
   --md-text-primary: #FFFFFF;
-  --md-text-secondary: #B8B8C4;
-  --md-text-muted: #6B6B7B;
+  --md-text-secondary: #B8C8D8;
+  --md-text-muted: #7A8FA5;
   
   /* ===== Borders & Shadows ===== */
-  --md-border: rgba(255, 255, 255, 0.06);
-  --md-border-subtle: rgba(255, 255, 255, 0.04);
-  --md-border-hover: rgba(255, 255, 255, 0.12);
-  --md-border-accent: var(--md-dragons-turq);
+  --md-border: rgba(255, 255, 255, 0.08);
+  --md-border-subtle: rgba(255, 255, 255, 0.05);
+  --md-border-hover: rgba(255, 255, 255, 0.15);
+  --md-border-accent: var(--md-dragons-orange);
   
-  --md-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --md-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --md-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
-  --md-shadow-glow-turq: 0 0 40px rgba(0, 212, 255, 0.15);
-  --md-shadow-glow-yellow: 0 0 40px rgba(255, 215, 0, 0.12);
-  --md-shadow-glow-partner: 0 0 40px var(--md-partner-accent-glow);
+  --md-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --md-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --md-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --md-shadow-glow-partner: 0 0 30px var(--md-partner-accent-glow);
 
   /* ===== Layout ===== */
   --md-container: 1200px;
@@ -58,16 +60,10 @@
   --md-button-height-xl: 3.5rem;
 
   /* ===== Legacy aliases ===== */
-  --md-accent: var(--md-dragons-turq);
-  --md-accent-dark: var(--md-dragons-turq-dark);
-  --md-accent-light: var(--md-dragons-turq-light);
-  --md-yellow: var(--md-dragons-yellow);
-  --md-yellow-dark: var(--md-dragons-yellow-dark);
-  --md-yellow-light: var(--md-dragons-yellow-light);
-  --md-red: var(--md-dragons-red);
-  --md-red-dark: var(--md-dragons-red-dark);
+  --md-accent: var(--md-dragons-orange);
+  --md-accent-dark: var(--md-dragons-orange-dark);
+  --md-accent-light: var(--md-dragons-orange-light);
   --md-surface: var(--md-surface-1);
-  --md-bg-secondary: var(--md-bg-secondary);
 }
 
 @theme inline {
@@ -122,7 +118,8 @@ body {
   border-radius: var(--md-card-radius);
   border: 1px solid var(--md-border);
   background: var(--md-surface-1);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .md-card:hover {
@@ -131,25 +128,25 @@ body {
 
 .md-card-featured {
   border-radius: var(--md-card-radius-lg);
-  border: 1px solid rgba(255, 107, 0, 0.2);
-  background: linear-gradient(135deg, var(--md-surface-1) 0%, rgba(255, 107, 0, 0.03) 100%);
+  border: 2px solid rgba(255, 107, 0, 0.4);
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.08) 0%, var(--md-surface-1) 100%);
+  backdrop-filter: blur(12px);
   box-shadow: var(--md-shadow-glow-partner);
 }
 
 .md-card-featured:hover {
-  border-color: rgba(255, 107, 0, 0.35);
+  border-color: rgba(255, 107, 0, 0.6);
 }
 
 .md-card-hero {
   border-radius: var(--md-card-radius-lg);
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  border: 1px solid var(--md-border);
   background: var(--md-surface-1);
-  box-shadow: var(--md-shadow-glow-turq);
+  backdrop-filter: blur(12px);
 }
 
 .md-card-hero:hover {
-  border-color: rgba(0, 212, 255, 0.25);
-  box-shadow: 0 0 60px rgba(0, 212, 255, 0.2);
+  border-color: var(--md-border-hover);
 }
 
 /* ===== Button System ===== */
@@ -183,25 +180,23 @@ body {
 }
 
 .md-btn-primary {
-  background: var(--md-dragons-yellow);
-  color: var(--md-bg);
+  background: var(--md-dragons-orange);
+  color: white;
 }
 
 .md-btn-primary:hover {
-  background: var(--md-dragons-yellow-dark);
-  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+  background: var(--md-dragons-orange-light);
 }
 
 .md-btn-secondary {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.08);
   border: 1px solid var(--md-border);
-  color: var(--md-text-secondary);
+  color: var(--md-text-primary);
 }
 
 .md-btn-secondary:hover {
-  background: var(--md-surface-hover);
+  background: rgba(255, 255, 255, 0.12);
   border-color: var(--md-border-hover);
-  color: var(--md-text-primary);
 }
 
 .md-btn-accent {
@@ -211,7 +206,6 @@ body {
 
 .md-btn-accent:hover {
   background: var(--md-dragons-turq-dark);
-  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
 }
 
 .md-btn-partner {
@@ -221,7 +215,6 @@ body {
 
 .md-btn-partner:hover {
   background: var(--md-partner-accent-light);
-  box-shadow: 0 4px 16px var(--md-partner-accent-glow);
 }
 
 /* ===== Badge System ===== */
@@ -229,7 +222,7 @@ body {
   display: inline-flex;
   align-items: center;
   padding: 0.375rem 0.75rem;
-  border-radius: 9999px;
+  border-radius: 0.375rem;
   font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -237,25 +230,25 @@ body {
 }
 
 .md-badge-turq {
-  background: rgba(0, 212, 255, 0.12);
-  border: 1px solid rgba(0, 212, 255, 0.25);
+  background: rgba(0, 184, 230, 0.15);
+  border: 1px solid rgba(0, 184, 230, 0.3);
   color: var(--md-dragons-turq);
 }
 
 .md-badge-yellow {
-  background: rgba(255, 215, 0, 0.12);
-  border: 1px solid rgba(255, 215, 0, 0.25);
-  color: var(--md-dragons-yellow);
+  background: rgba(232, 93, 4, 0.15);
+  border: 1px solid rgba(232, 93, 4, 0.3);
+  color: var(--md-dragons-orange);
 }
 
 .md-badge-partner {
-  background: rgba(255, 107, 0, 0.12);
-  border: 1px solid rgba(255, 107, 0, 0.25);
+  background: rgba(255, 107, 0, 0.2);
+  border: 1px solid rgba(255, 107, 0, 0.4);
   color: var(--md-partner-accent);
 }
 
 .md-badge-muted {
-  background: var(--md-surface-2);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--md-border);
   color: var(--md-text-muted);
 }
@@ -267,9 +260,9 @@ body {
   align-items: center;
   height: 2.25rem;
   padding-inline: 1rem;
-  border-radius: 9999px;
+  border-radius: 0.5rem;
   border: 1px solid var(--md-border);
-  background: var(--md-surface-1);
+  background: rgba(255, 255, 255, 0.05);
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--md-text-secondary);
@@ -279,19 +272,19 @@ body {
 
 .md-chip:hover {
   border-color: var(--md-border-hover);
-  background: var(--md-surface-2);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--md-text-primary);
 }
 
 .md-chip-active {
-  border-color: var(--md-dragons-turq);
-  background: rgba(0, 212, 255, 0.1);
-  color: var(--md-dragons-turq);
+  border-color: var(--md-dragons-orange);
+  background: rgba(232, 93, 4, 0.15);
+  color: var(--md-dragons-orange);
 }
 
 .md-chip-active:hover {
-  border-color: var(--md-dragons-turq);
-  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--md-dragons-orange);
+  background: rgba(232, 93, 4, 0.2);
 }
 
 /* ===== Scrollbar Hide ===== */
@@ -304,47 +297,12 @@ body {
   display: none;
 }
 
-/* ===== Dynamic Background Pattern ===== */
-.md-bg-pattern {
-  position: relative;
-}
-
-.md-bg-pattern::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(135deg, transparent 0%, transparent 49%, rgba(0, 212, 255, 0.03) 50%, transparent 51%, transparent 100%),
-    linear-gradient(45deg, transparent 0%, transparent 49%, rgba(255, 215, 0, 0.02) 50%, transparent 51%, transparent 100%);
-  background-size: 60px 60px;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* ===== Spotlight/Halo Effect ===== */
-.md-spotlight {
-  position: relative;
-}
-
-.md-spotlight::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.08) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: -1;
-}
-
 /* ===== Partner Divider ===== */
 .md-partner-divider {
-  height: 3px;
+  height: 2px;
   background: linear-gradient(90deg, transparent 0%, var(--md-partner-accent) 50%, transparent 100%);
-  opacity: 0.4;
-  border-radius: 2px;
+  opacity: 0.5;
+  border-radius: 1px;
 }
 
 /* ===== Smooth Scrolling ===== */
@@ -364,16 +322,11 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
-  .md-spotlight::after,
-  .md-bg-pattern::before {
-    display: none;
-  }
 }
 
 /* ===== Focus Styles ===== */
 *:focus-visible {
-  outline: 2px solid var(--md-dragons-turq);
+  outline: 2px solid var(--md-dragons-orange);
   outline-offset: 2px;
 }
 
@@ -383,8 +336,8 @@ html {
   top: -100%;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--md-dragons-yellow);
-  color: var(--md-bg);
+  background: var(--md-dragons-orange);
+  color: white;
   padding: 0.75rem 1.5rem;
   border-radius: var(--md-button-radius);
   font-weight: 600;
@@ -394,21 +347,6 @@ html {
 
 .md-skip-link:focus {
   top: 1rem;
-}
-
-/* ===== Noise/Grain Texture ===== */
-.md-noise {
-  position: relative;
-}
-
-.md-noise::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.015;
-  pointer-events: none;
-  mix-blend-mode: overlay;
 }
 
 /* ===== Text Utilities ===== */

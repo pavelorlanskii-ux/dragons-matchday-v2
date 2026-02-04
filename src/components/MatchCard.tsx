@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
+
+const CLUB_LOGO = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo_shanghai_dragons-rpqZlKvYrjv48TTGb7Qc3pkrbDbzZJ.png";
 
 function formatCountdown(ms: number) {
   if (ms <= 0) return "Матч начался";
@@ -17,7 +20,7 @@ function formatCountdown(ms: number) {
 function CountdownUnit({ value, label }: { value: string; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <span className="text-2xl font-bold tabular-nums text-[var(--md-dragons-turq)] sm:text-3xl lg:text-4xl">
+      <span className="text-2xl font-bold tabular-nums text-[var(--md-dragons-orange)] sm:text-3xl lg:text-4xl">
         {value}
       </span>
       <span className="mt-1 text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)] sm:text-xs">
@@ -81,9 +84,13 @@ export function MatchCard(props: {
           <div className="flex items-center justify-between gap-3">
             {/* Home Team */}
             <div className="flex min-w-0 flex-1 flex-col items-center text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-turq)]/5 text-xs font-bold text-[var(--md-dragons-turq)]">
-                {props.homeLogoText.slice(0, 3).toUpperCase()}
-              </div>
+              <Image
+                src={CLUB_LOGO}
+                alt={homeName}
+                width={56}
+                height={56}
+                className="h-14 w-14 object-contain"
+              />
               <div className="mt-2 text-[10px] font-medium uppercase tracking-wide text-[var(--md-text-muted)]">Хозяева</div>
               <div className="mt-0.5 line-clamp-2 text-sm font-semibold text-[var(--md-text-primary)]">{homeName}</div>
             </div>
@@ -105,7 +112,7 @@ export function MatchCard(props: {
         </div>
 
         {/* Countdown */}
-        <div className="rounded-xl border border-[var(--md-dragons-turq)]/20 bg-[var(--md-surface-2)] p-4">
+        <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] p-4">
           <div className="mb-3 text-center text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
           {diff > 0 ? (
             <div className="flex items-center justify-center gap-6">
@@ -116,7 +123,7 @@ export function MatchCard(props: {
               <CountdownUnit value={countdown.m} label="минут" />
             </div>
           ) : (
-            <div className="text-center text-xl font-bold text-[var(--md-dragons-turq)]">Матч начался</div>
+            <div className="text-center text-xl font-bold text-[var(--md-dragons-orange)]">Матч начался</div>
           )}
         </div>
 
@@ -152,9 +159,13 @@ export function MatchCard(props: {
             <div className="flex items-center justify-between gap-4">
               {/* Home Team */}
               <div className="flex min-w-0 flex-1 items-center gap-4">
-                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-turq)]/5 text-sm font-bold text-[var(--md-dragons-turq)]">
-                  {props.homeLogoText.slice(0, 3).toUpperCase()}
-                </div>
+                <Image
+                  src={CLUB_LOGO}
+                  alt={homeName}
+                  width={64}
+                  height={64}
+                  className="h-16 w-16 shrink-0 object-contain"
+                />
                 <div className="min-w-0">
                   <div className="text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">Хозяева</div>
                   <div className="mt-0.5 truncate text-lg font-bold text-[var(--md-text-primary)]">{homeName}</div>
@@ -182,7 +193,7 @@ export function MatchCard(props: {
           {/* Right Column: Countdown + CTAs */}
           <div className="space-y-4">
             {/* Countdown */}
-            <div className="rounded-xl border border-[var(--md-dragons-turq)]/20 bg-[var(--md-surface-2)] p-4">
+            <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] p-4">
               <div className="mb-2 text-center text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
               {diff > 0 ? (
                 <div className="flex items-center justify-center gap-3">
@@ -193,7 +204,7 @@ export function MatchCard(props: {
                   <CountdownUnit value={countdown.m} label="м" />
                 </div>
               ) : (
-                <div className="text-center text-xl font-bold text-[var(--md-dragons-turq)]">Матч начался</div>
+                <div className="text-center text-xl font-bold text-[var(--md-dragons-orange)]">Матч начался</div>
               )}
             </div>
 

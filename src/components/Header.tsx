@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+
+const CLUB_LOGO = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo_shanghai_dragons-rpqZlKvYrjv48TTGb7Qc3pkrbDbzZJ.png";
 
 const NAV_GROUPS = [
   {
@@ -121,20 +124,24 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--md-border)] bg-[var(--md-bg)]/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[var(--md-container)] items-center justify-between px-4 py-3 md:px-6 lg:px-8">
+    <header className="relative z-50 sticky top-0 border-b border-[var(--md-border)] bg-[var(--md-bg)]/90 backdrop-blur-lg">
+      <div className="mx-auto flex max-w-[var(--md-container)] items-center justify-between px-4 py-2 md:px-6 lg:px-8">
         {/* Logo */}
         <a
           href="https://hc-dragons.com"
-          className="flex items-center gap-2.5 text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-dragons-turq)]"
+          className="flex items-center gap-3 transition-opacity hover:opacity-80"
           aria-label="ХК Шанхай Дрэгонс - На главную"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-yellow)]/10 ring-1 ring-[var(--md-dragons-turq)]/20">
-            <span className="text-xs font-bold text-[var(--md-dragons-turq)]">SD</span>
-          </div>
+          <Image
+            src={CLUB_LOGO}
+            alt="Шанхай Дрэгонс"
+            width={48}
+            height={48}
+            className="h-11 w-11 object-contain md:h-12 md:w-12"
+          />
           <div className="hidden sm:block">
-            <div className="text-sm font-bold leading-tight">Шанхай</div>
-            <div className="text-[11px] font-medium text-[var(--md-text-muted)]">Дрэгонс</div>
+            <div className="text-sm font-bold leading-tight text-[var(--md-text-primary)]">Шанхай</div>
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-[var(--md-dragons-orange)]">Дрэгонс</div>
           </div>
         </a>
 
@@ -151,8 +158,8 @@ export function Header() {
                 type="button"
                 className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   openDropdown === group.label
-                    ? "bg-[var(--md-surface-2)] text-[var(--md-dragons-turq)]"
-                    : "text-[var(--md-text-secondary)] hover:bg-[var(--md-surface-1)] hover:text-[var(--md-text-primary)]"
+                    ? "bg-[var(--md-surface-2)] text-[var(--md-dragons-orange)]"
+                    : "text-[var(--md-text-secondary)] hover:text-[var(--md-text-primary)]"
                 }`}
                 aria-expanded={openDropdown === group.label}
                 aria-haspopup="true"
@@ -206,7 +213,7 @@ export function Header() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--md-text-muted)] transition-colors hover:bg-[var(--md-surface-2)] hover:text-[var(--md-dragons-turq)]"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-dragons-orange)]"
                 aria-label={social.label}
               >
                 {social.icon === "vk" && (
@@ -318,7 +325,7 @@ export function Header() {
                       href={social.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--md-border)] text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-dragons-turq)]"
+                      className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--md-border)] text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-dragons-orange)]"
                       aria-label={social.label}
                     >
                       {social.icon === "vk" && (
