@@ -1,88 +1,208 @@
 @import "tailwindcss";
 
 :root {
-  /* Shanghai Dragons Brand Colors */
-  --brand-turquoise: #00D4FF;
-  --brand-turquoise-dark: #00B8E6;
-  --brand-turquoise-light: #33DDFF;
-  --brand-yellow: #FFD700;
-  --brand-yellow-dark: #E6C200;
-  --brand-yellow-light: #FFE033;
-  --brand-red: #FF4444;
-  --brand-red-dark: #E63333;
-  --brand-red-light: #FF6666;
+  /* ===== Matchday Prefixed Variables (md-) ===== */
+  /* Brand Colors */
+  --md-accent: #00D4FF;
+  --md-accent-dark: #00B8E6;
+  --md-accent-light: #33DDFF;
+  --md-yellow: #FFD700;
+  --md-yellow-dark: #E6C200;
+  --md-yellow-light: #FFE033;
+  --md-red: #FF4444;
+  --md-red-dark: #E63333;
 
-  /* Neutral Colors */
-  --bg-primary: #0A0A0A;
-  --bg-secondary: #141414;
-  --bg-surface: #1A1A1A;
-  --bg-surface-hover: #222222;
+  /* Background */
+  --md-bg: #0A0A0A;
+  --md-bg-secondary: #111111;
+  --md-surface: #161616;
+  --md-surface-hover: #1E1E1E;
   
-  --text-primary: #FFFFFF;
-  --text-secondary: #E5E5E5;
-  --text-muted: #A0A0A0;
-  --text-disabled: #666666;
+  /* Text */
+  --md-text-primary: #FFFFFF;
+  --md-text-secondary: #D4D4D4;
+  --md-text-muted: #8A8A8A;
   
-  --border-default: rgba(255, 255, 255, 0.1);
-  --border-hover: rgba(255, 255, 255, 0.2);
-  --border-accent: var(--brand-turquoise);
+  /* Borders */
+  --md-border: rgba(255, 255, 255, 0.08);
+  --md-border-hover: rgba(255, 255, 255, 0.15);
 
-  /* Spacing (Dynamo-inspired) */
-  --spacing-section: 5rem; /* 80px */
-  --spacing-section-lg: 7.5rem; /* 120px */
-  --spacing-container: 1.5rem; /* 24px mobile */
-  --spacing-container-md: 2rem; /* 32px tablet */
-  --spacing-container-lg: 3rem; /* 48px desktop */
+  /* Layout */
+  --md-container: 1200px;
+  --md-section-gap: 4rem;
+  --md-section-gap-lg: 5rem;
 
-  /* Typography */
-  --font-heading: var(--font-geist-sans);
-  --font-body: var(--font-geist-sans);
+  /* Cards */
+  --md-card-radius: 1.25rem;
+  --md-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --md-card-shadow-hover: 0 8px 24px rgba(0, 212, 255, 0.08);
+
+  /* Buttons */
+  --md-button-radius: 0.75rem;
+  --md-button-height: 2.75rem;
+  --md-button-height-lg: 3rem;
+
+  /* ===== Legacy Variables (for backwards compatibility) ===== */
+  --brand-turquoise: var(--md-accent);
+  --brand-turquoise-dark: var(--md-accent-dark);
+  --brand-turquoise-light: var(--md-accent-light);
+  --brand-yellow: var(--md-yellow);
+  --brand-yellow-dark: var(--md-yellow-dark);
+  --brand-yellow-light: var(--md-yellow-light);
+  --brand-red: var(--md-red);
+  --brand-red-dark: var(--md-red-dark);
+
+  --bg-primary: var(--md-bg);
+  --bg-secondary: var(--md-bg-secondary);
+  --bg-surface: var(--md-surface);
+  --bg-surface-hover: var(--md-surface-hover);
   
-  /* Border Radius */
-  --radius-sm: 0.5rem; /* 8px */
-  --radius-md: 0.75rem; /* 12px */
-  --radius-lg: 1rem; /* 16px */
-  --radius-xl: 1.5rem; /* 24px */
-  --radius-button: 0.75rem; /* 12px */
-  --radius-card: 1.5rem; /* 24px */
+  --text-primary: var(--md-text-primary);
+  --text-secondary: var(--md-text-secondary);
+  --text-muted: var(--md-text-muted);
+  --text-disabled: #555555;
+  
+  --border-default: var(--md-border);
+  --border-hover: var(--md-border-hover);
+  --border-accent: var(--md-accent);
 
-  /* Shadows */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-button: var(--md-button-radius);
+  --radius-card: var(--md-card-radius);
+
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
-  --shadow-card-hover: 0 8px 24px rgba(0, 212, 255, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-card: var(--md-card-shadow);
+  --shadow-card-hover: var(--md-card-shadow-hover);
 
-  /* Container */
-  --container-max-width: 1200px;
+  --container-max-width: var(--md-container);
 }
 
 @theme inline {
-  --color-background: var(--bg-primary);
-  --color-foreground: var(--text-primary);
+  --color-background: var(--md-bg);
+  --color-foreground: var(--md-text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  background: var(--md-bg);
+  color: var(--md-text-primary);
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Utility classes for brand colors */
-.bg-brand-turquoise { background-color: var(--brand-turquoise); }
-.bg-brand-yellow { background-color: var(--brand-yellow); }
-.bg-brand-red { background-color: var(--brand-red); }
-.text-brand-turquoise { color: var(--brand-turquoise); }
-.text-brand-yellow { color: var(--brand-yellow); }
-.text-brand-red { color: var(--brand-red); }
-.border-brand-turquoise { border-color: var(--brand-turquoise); }
-.border-brand-yellow { border-color: var(--brand-yellow); }
+/* ===== Matchday Utility Classes (md-*) ===== */
 
-/* Hide scrollbar utility for horizontal scroll */
+/* Card System */
+.md-card {
+  border-radius: var(--md-card-radius);
+  border: 1px solid var(--md-border);
+  background: var(--md-surface);
+  box-shadow: var(--md-card-shadow);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.md-card:hover {
+  box-shadow: var(--md-card-shadow-hover);
+  border-color: var(--md-border-hover);
+}
+
+/* Buttons */
+.md-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--md-button-height);
+  padding-inline: 1.25rem;
+  border-radius: var(--md-button-radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.md-btn:active {
+  transform: scale(0.98);
+}
+
+.md-btn-primary {
+  background: var(--md-yellow);
+  color: var(--md-bg);
+}
+
+.md-btn-primary:hover {
+  background: var(--md-yellow-dark);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.25);
+}
+
+.md-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--md-border);
+  color: var(--md-text-secondary);
+}
+
+.md-btn-secondary:hover {
+  background: var(--md-surface-hover);
+  border-color: var(--md-border-hover);
+}
+
+.md-btn-accent {
+  background: var(--md-accent);
+  color: var(--md-bg);
+}
+
+.md-btn-accent:hover {
+  background: var(--md-accent-dark);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
+}
+
+/* Section spacing */
+.md-section {
+  margin-bottom: var(--md-section-gap);
+}
+
+@media (min-width: 768px) {
+  .md-section {
+    margin-bottom: var(--md-section-gap-lg);
+  }
+}
+
+/* Container */
+.md-container {
+  width: 100%;
+  max-width: var(--md-container);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .md-container {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .md-container {
+    padding-inline: 2rem;
+  }
+}
+
+/* Scrollbar hide */
+.md-scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.md-scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Legacy scrollbar-hide class */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -97,8 +217,41 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Focus styles for accessibility */
 *:focus-visible {
-  outline: 2px solid var(--brand-turquoise);
+  outline: 2px solid var(--md-accent);
   outline-offset: 2px;
+}
+
+/* Skip link */
+.md-skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--md-yellow);
+  color: var(--md-bg);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--md-button-radius);
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.2s ease;
+}
+
+.md-skip-link:focus {
+  top: 1rem;
 }

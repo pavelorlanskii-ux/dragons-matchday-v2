@@ -1,5 +1,4 @@
-// src/components/PartnerOddsBar.tsx
-import React from "react";
+"use client";
 
 type Partner = {
   name: string;
@@ -22,6 +21,30 @@ function formatOdd(v: unknown) {
   return Number.isFinite(n) ? n.toFixed(2) : "--";
 }
 
+function OddPill({ 
+  label, 
+  value, 
+  href 
+}: { 
+  label: string; 
+  value: unknown; 
+  href: string;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="group flex min-w-[90px] flex-col items-center justify-center rounded-xl border border-[var(--md-border)] bg-[var(--md-bg-secondary)] px-4 py-3 transition-all hover:border-[var(--md-accent)]/40 hover:bg-[var(--md-surface)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--md-surface)] active:scale-[0.97]"
+    >
+      <span className="text-xs font-medium text-[var(--md-text-muted)]">{label}</span>
+      <span className="mt-1 text-xl font-bold text-[var(--md-accent)] transition-colors group-hover:text-[var(--md-accent-light)]">
+        {formatOdd(value)}
+      </span>
+    </a>
+  );
+}
+
 export function PartnerOddsBar({
   partner,
   odds,
@@ -31,115 +54,104 @@ export function PartnerOddsBar({
   odds?: Odds;
   className?: string;
 }) {
-  // Безопасное извлечение данных с фолбэками
-  const ctaLabel = odds?.cta?.label ?? odds?.ctaLabel ?? "Перейти на сайт";
+  const ctaLabel = odds?.cta?.label ?? odds?.ctaLabel ?? "Сделать ставку";
   const ctaHref = odds?.cta?.href ?? odds?.ctaHref ?? partner?.url ?? "#";
   const disclaimer = odds?.disclaimer ?? "Информация носит справочный характер";
 
   return (
-    <div className={`rounded-[var(--radius-card)] border border-[var(--border-default)] bg-[var(--bg-surface)] p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] sm:p-6 md:p-8 ${className || ""}`}>
-      {/* Mobile: Stacked layout */}
-      <div className="flex flex-col gap-4 md:hidden">
-        {/* Partner */}
-        <div className="flex items-center gap-3">
-          <div className="h-12 w-16 shrink-0 rounded-[var(--radius-md)] bg-gradient-to-br from-[var(--brand-turquoise)]/20 to-[var(--brand-yellow)]/10" />
-          <div className="leading-tight">
-            <div className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide">Партнер матча</div>
+    <div className={`md-card overflow-hidden ${className || ""}`}>
+      {/* Mobile Layout */}
+      <div className="flex flex-col gap-5 p-5 sm:p-6 lg:hidden">
+        {/* Partner Info */}
+        <div className="flex items-center gap-4">
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-accent)]/15 to-[var(--md-yellow)]/10">
+            <span className="text-sm font-bold text-[var(--md-accent)]">BB</span>
+          </div>
+          <div>
+            <div className="text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">
+              Партнёр матча
+            </div>
             <a
-              className="mt-0.5 block text-base font-bold text-[var(--text-primary)] transition-colors hover:text-[var(--brand-turquoise)]"
               href={partner.url}
               target="_blank"
               rel="noreferrer"
+              className="mt-0.5 block text-lg font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-accent)]"
             >
               {partner.logoText || partner.name}
             </a>
           </div>
         </div>
 
-        {/* Odds - Horizontal scroll on mobile */}
-        <div className="overflow-x-auto pb-2 scrollbar-hide">
-          <div className="flex gap-3 min-w-max">
-            <div className="flex-shrink-0 rounded-[var(--radius-md)] border border-[var(--border-default)] bg-[var(--bg-secondary)] px-4 py-3 text-center shadow-sm">
-              <div className="text-xs font-medium text-[var(--text-muted)]">П1</div>
-              <div className="mt-1 text-xl font-bold text-[var(--brand-turquoise)]">{formatOdd(odds?.p1)}</div>
-            </div>
-            <div className="flex-shrink-0 rounded-[var(--radius-md)] border border-[var(--border-default)] bg-[var(--bg-secondary)] px-4 py-3 text-center shadow-sm">
-              <div className="text-xs font-medium text-[var(--text-muted)]">X</div>
-              <div className="mt-1 text-xl font-bold text-[var(--brand-turquoise)]">{formatOdd(odds?.x)}</div>
-            </div>
-            <div className="flex-shrink-0 rounded-[var(--radius-md)] border border-[var(--border-default)] bg-[var(--bg-secondary)] px-4 py-3 text-center shadow-sm">
-              <div className="text-xs font-medium text-[var(--text-muted)]">П2</div>
-              <div className="mt-1 text-xl font-bold text-[var(--brand-turquoise)]">{formatOdd(odds?.p2)}</div>
-            </div>
+        {/* Odds Pills - Horizontal scroll */}
+        <div className="overflow-x-auto pb-1 md-scrollbar-hide">
+          <div className="flex min-w-max gap-3">
+            <OddPill label="П1" value={odds?.p1} href={ctaHref} />
+            <OddPill label="X" value={odds?.x} href={ctaHref} />
+            <OddPill label="П2" value={odds?.p2} href={ctaHref} />
           </div>
         </div>
 
-        {/* CTA - Full width on mobile */}
+        {/* CTA Button - Full width, large tap target */}
         <a
           href={ctaHref}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex h-12 w-full items-center justify-center rounded-[var(--radius-button)] bg-[var(--brand-yellow)] text-sm font-semibold text-[var(--bg-primary)] transition-all hover:bg-[var(--brand-yellow-dark)] hover:shadow-lg active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[var(--brand-yellow)] focus:ring-offset-2 focus:ring-offset-[var(--bg-surface)]"
+          className="flex h-14 w-full items-center justify-center rounded-xl bg-[var(--md-yellow)] text-base font-semibold text-[var(--md-bg)] transition-all hover:bg-[var(--md-yellow-dark)] hover:shadow-lg active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-yellow)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--md-surface)]"
         >
           {ctaLabel}
         </a>
 
         {/* Disclaimer */}
-        <div className="border-t border-[var(--border-default)] pt-3 text-xs text-[var(--text-muted)]">
+        <div className="border-t border-[var(--md-border)] pt-4 text-xs text-[var(--md-text-muted)]">
           {disclaimer}
         </div>
       </div>
 
-      {/* Desktop: Horizontal layout */}
-      <div className="hidden flex-col gap-6 md:flex md:flex-row md:items-center md:justify-between">
-        {/* Left: Partner */}
-        <div className="flex items-center gap-4">
-          <div className="h-16 w-20 shrink-0 rounded-[var(--radius-md)] bg-gradient-to-br from-[var(--brand-turquoise)]/20 to-[var(--brand-yellow)]/10" />
-          <div className="leading-tight">
-            <div className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide">Партнер матча</div>
-            <a
-              className="mt-1 block text-lg font-bold text-[var(--text-primary)] transition-colors hover:text-[var(--brand-turquoise)]"
-              href={partner.url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {partner.logoText || partner.name}
-            </a>
+      {/* Desktop Layout */}
+      <div className="hidden p-6 lg:block lg:p-8">
+        <div className="flex items-center justify-between gap-6">
+          {/* Partner Info */}
+          <div className="flex items-center gap-4">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-accent)]/15 to-[var(--md-yellow)]/10">
+              <span className="text-base font-bold text-[var(--md-accent)]">BB</span>
+            </div>
+            <div>
+              <div className="text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">
+                Партнёр матча
+              </div>
+              <a
+                href={partner.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 block text-xl font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-accent)]"
+              >
+                {partner.logoText || partner.name}
+              </a>
+            </div>
           </div>
-        </div>
 
-        {/* Middle: Odds pills */}
-        <div className="flex items-center gap-3">
-          <div className="rounded-[var(--radius-md)] border border-[var(--border-default)] bg-[var(--bg-secondary)] px-4 py-3 text-center shadow-sm transition-all hover:border-[var(--brand-turquoise)]/50 hover:shadow-md">
-            <div className="text-xs font-medium text-[var(--text-muted)]">П1</div>
-            <div className="mt-1 text-xl font-bold text-[var(--brand-turquoise)]">{formatOdd(odds?.p1)}</div>
+          {/* Odds Pills */}
+          <div className="flex items-center gap-3">
+            <OddPill label="П1" value={odds?.p1} href={ctaHref} />
+            <OddPill label="X" value={odds?.x} href={ctaHref} />
+            <OddPill label="П2" value={odds?.p2} href={ctaHref} />
           </div>
-          <div className="rounded-[var(--radius-md)] border border-[var(--border-default)] bg-[var(--bg-secondary)] px-4 py-3 text-center shadow-sm transition-all hover:border-[var(--brand-turquoise)]/50 hover:shadow-md">
-            <div className="text-xs font-medium text-[var(--text-muted)]">X</div>
-            <div className="mt-1 text-xl font-bold text-[var(--brand-turquoise)]">{formatOdd(odds?.x)}</div>
-          </div>
-          <div className="rounded-[var(--radius-md)] border border-[var(--border-default)] bg-[var(--bg-secondary)] px-4 py-3 text-center shadow-sm transition-all hover:border-[var(--brand-turquoise)]/50 hover:shadow-md">
-            <div className="text-xs font-medium text-[var(--text-muted)]">П2</div>
-            <div className="mt-1 text-xl font-bold text-[var(--brand-turquoise)]">{formatOdd(odds?.p2)}</div>
-          </div>
-        </div>
 
-        {/* Right: CTA */}
-        <div className="flex items-center justify-end">
+          {/* CTA Button */}
           <a
             href={ctaHref}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-12 items-center justify-center rounded-[var(--radius-button)] bg-[var(--brand-yellow)] px-6 text-sm font-semibold text-[var(--bg-primary)] transition-all hover:bg-[var(--brand-yellow-dark)] hover:shadow-lg active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[var(--brand-yellow)] focus:ring-offset-2 focus:ring-offset-[var(--bg-surface)]"
+            className="flex h-12 items-center justify-center rounded-xl bg-[var(--md-yellow)] px-8 text-sm font-semibold text-[var(--md-bg)] transition-all hover:bg-[var(--md-yellow-dark)] hover:shadow-lg active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-yellow)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--md-surface)]"
           >
             {ctaLabel}
           </a>
         </div>
-      </div>
 
-      {/* Desktop Disclaimer */}
-      <div className="hidden border-t border-[var(--border-default)] pt-4 text-xs text-[var(--text-muted)] md:mt-6 md:block">
-        {disclaimer}
+        {/* Disclaimer */}
+        <div className="mt-6 border-t border-[var(--md-border)] pt-4 text-xs text-[var(--md-text-muted)]">
+          {disclaimer}
+        </div>
       </div>
     </div>
   );
