@@ -2,72 +2,77 @@
 
 :root {
   /* ===== Dragons Brand System ===== */
-  --md-dragons-turq: #00D4FF;
-  --md-dragons-turq-dark: #00B8E6;
-  --md-dragons-turq-light: #33DDFF;
-  --md-dragons-yellow: #FFD700;
-  --md-dragons-yellow-dark: #E6C200;
-  --md-dragons-yellow-light: #FFE44D;
-  --md-dragons-red: #FF4444;
-  --md-dragons-red-dark: #E63333;
+  --md-dragons-navy: #0A1628;
+  --md-dragons-navy-light: #0F2240;
+  --md-dragons-blue: #1A365D;
+  --md-dragons-orange: #E85A00;
+  --md-dragons-orange-light: #FF6B00;
+  --md-dragons-gold: #D4A853;
+  --md-dragons-gold-light: #E6BE6A;
+  
+  /* Legacy turq/yellow for compatibility */
+  --md-dragons-turq: #4A9BD9;
+  --md-dragons-turq-dark: #3A8BC9;
+  --md-dragons-turq-light: #5AABE9;
+  --md-dragons-yellow: #E85A00;
+  --md-dragons-yellow-dark: #D04A00;
+  --md-dragons-yellow-light: #FF6B00;
 
   /* ===== Partner Overlay (BetBoom) ===== */
   --md-partner-accent: #FF6B00;
   --md-partner-accent-light: #FF8533;
-  --md-partner-accent-glow: rgba(255, 107, 0, 0.15);
+  --md-partner-accent-dark: #E55A00;
+  --md-partner-accent-glow: rgba(255, 107, 0, 0.2);
 
   /* ===== Surfaces ===== */
-  --md-bg: #050507;
-  --md-bg-secondary: #0C0C10;
-  --md-surface-1: #111116;
-  --md-surface-2: #18181D;
-  --md-surface-3: #1F1F26;
-  --md-surface-hover: #242430;
+  --md-bg: #0A1628;
+  --md-bg-secondary: #0F1D32;
+  --md-surface-1: rgba(15, 35, 64, 0.85);
+  --md-surface-2: rgba(20, 45, 80, 0.9);
+  --md-surface-3: rgba(26, 54, 93, 0.9);
+  --md-surface-hover: rgba(35, 65, 110, 0.9);
   
   /* ===== Text ===== */
   --md-text-primary: #FFFFFF;
-  --md-text-secondary: #B8B8C4;
-  --md-text-muted: #6B6B7B;
+  --md-text-secondary: #A8B8D0;
+  --md-text-muted: #6B7D99;
   
   /* ===== Borders & Shadows ===== */
-  --md-border: rgba(255, 255, 255, 0.06);
-  --md-border-subtle: rgba(255, 255, 255, 0.04);
-  --md-border-hover: rgba(255, 255, 255, 0.12);
-  --md-border-accent: var(--md-dragons-turq);
+  --md-border: rgba(255, 255, 255, 0.08);
+  --md-border-subtle: rgba(255, 255, 255, 0.05);
+  --md-border-hover: rgba(255, 255, 255, 0.15);
+  --md-border-accent: var(--md-dragons-orange);
   
-  --md-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --md-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
-  --md-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
-  --md-shadow-glow-turq: 0 0 40px rgba(0, 212, 255, 0.15);
-  --md-shadow-glow-yellow: 0 0 40px rgba(255, 215, 0, 0.12);
-  --md-shadow-glow-partner: 0 0 40px var(--md-partner-accent-glow);
+  --md-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --md-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --md-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --md-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.03);
 
   /* ===== Layout ===== */
   --md-container: 1200px;
-  --md-section-gap: 3.5rem;
-  --md-section-gap-lg: 5rem;
+  --md-section-gap: 4rem;
+  --md-section-gap-lg: 5.5rem;
 
   /* ===== Cards ===== */
-  --md-card-radius: 1rem;
-  --md-card-radius-lg: 1.25rem;
+  --md-card-radius: 0.75rem;
+  --md-card-radius-lg: 1rem;
 
   /* ===== Buttons ===== */
-  --md-button-radius: 0.625rem;
+  --md-button-radius: 0.5rem;
   --md-button-height: 2.75rem;
-  --md-button-height-lg: 3.25rem;
+  --md-button-height-lg: 3rem;
   --md-button-height-xl: 3.5rem;
 
   /* ===== Legacy aliases ===== */
-  --md-accent: var(--md-dragons-turq);
-  --md-accent-dark: var(--md-dragons-turq-dark);
-  --md-accent-light: var(--md-dragons-turq-light);
-  --md-yellow: var(--md-dragons-yellow);
-  --md-yellow-dark: var(--md-dragons-yellow-dark);
-  --md-yellow-light: var(--md-dragons-yellow-light);
-  --md-red: var(--md-dragons-red);
-  --md-red-dark: var(--md-dragons-red-dark);
+  --md-accent: var(--md-dragons-orange);
+  --md-accent-dark: var(--md-dragons-orange);
+  --md-accent-light: var(--md-dragons-orange-light);
+  --md-yellow: var(--md-dragons-orange);
+  --md-yellow-dark: var(--md-dragons-orange);
+  --md-yellow-light: var(--md-dragons-orange-light);
+  --md-red: #E85A00;
+  --md-red-dark: #D04A00;
   --md-surface: var(--md-surface-1);
-  --md-bg-secondary: var(--md-bg-secondary);
 }
 
 @theme inline {
@@ -122,7 +127,9 @@ body {
   border-radius: var(--md-card-radius);
   border: 1px solid var(--md-border);
   background: var(--md-surface-1);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--md-shadow-card);
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .md-card:hover {
@@ -131,25 +138,26 @@ body {
 
 .md-card-featured {
   border-radius: var(--md-card-radius-lg);
-  border: 1px solid rgba(255, 107, 0, 0.2);
-  background: linear-gradient(135deg, var(--md-surface-1) 0%, rgba(255, 107, 0, 0.03) 100%);
-  box-shadow: var(--md-shadow-glow-partner);
+  border: 1px solid rgba(255, 107, 0, 0.35);
+  background: linear-gradient(135deg, rgba(255, 107, 0, 0.12) 0%, rgba(15, 35, 64, 0.95) 100%);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 0 30px rgba(255, 107, 0, 0.15), inset 0 1px 0 rgba(255, 107, 0, 0.1);
 }
 
 .md-card-featured:hover {
-  border-color: rgba(255, 107, 0, 0.35);
+  border-color: rgba(255, 107, 0, 0.5);
 }
 
 .md-card-hero {
   border-radius: var(--md-card-radius-lg);
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  border: 1px solid var(--md-border);
   background: var(--md-surface-1);
-  box-shadow: var(--md-shadow-glow-turq);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--md-shadow-md);
 }
 
 .md-card-hero:hover {
-  border-color: rgba(0, 212, 255, 0.25);
-  box-shadow: 0 0 60px rgba(0, 212, 255, 0.2);
+  border-color: var(--md-border-hover);
 }
 
 /* ===== Button System ===== */
@@ -183,79 +191,78 @@ body {
 }
 
 .md-btn-primary {
-  background: var(--md-dragons-yellow);
-  color: var(--md-bg);
+  background: var(--md-dragons-orange);
+  color: white;
+  font-weight: 600;
 }
 
 .md-btn-primary:hover {
-  background: var(--md-dragons-yellow-dark);
-  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+  background: var(--md-dragons-orange-light);
 }
 
 .md-btn-secondary {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--md-border);
   color: var(--md-text-secondary);
 }
 
 .md-btn-secondary:hover {
-  background: var(--md-surface-hover);
+  background: rgba(255, 255, 255, 0.1);
   border-color: var(--md-border-hover);
   color: var(--md-text-primary);
 }
 
 .md-btn-accent {
-  background: var(--md-dragons-turq);
-  color: var(--md-bg);
-}
-
-.md-btn-accent:hover {
-  background: var(--md-dragons-turq-dark);
-  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
-}
-
-.md-btn-partner {
-  background: var(--md-partner-accent);
+  background: var(--md-dragons-orange);
   color: white;
 }
 
+.md-btn-accent:hover {
+  background: var(--md-dragons-orange-light);
+}
+
+.md-btn-partner {
+  background: linear-gradient(135deg, var(--md-partner-accent) 0%, var(--md-partner-accent-dark) 100%);
+  color: white;
+  font-weight: 600;
+}
+
 .md-btn-partner:hover {
-  background: var(--md-partner-accent-light);
-  box-shadow: 0 4px 16px var(--md-partner-accent-glow);
+  background: linear-gradient(135deg, var(--md-partner-accent-light) 0%, var(--md-partner-accent) 100%);
 }
 
 /* ===== Badge System ===== */
 .md-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.375rem 0.75rem;
-  border-radius: 9999px;
+  padding: 0.25rem 0.625rem;
+  border-radius: 4px;
   font-size: 0.6875rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
 }
 
 .md-badge-turq {
-  background: rgba(0, 212, 255, 0.12);
-  border: 1px solid rgba(0, 212, 255, 0.25);
-  color: var(--md-dragons-turq);
+  background: rgba(74, 155, 217, 0.15);
+  border: 1px solid rgba(74, 155, 217, 0.3);
+  color: #5AABE9;
 }
 
 .md-badge-yellow {
-  background: rgba(255, 215, 0, 0.12);
-  border: 1px solid rgba(255, 215, 0, 0.25);
-  color: var(--md-dragons-yellow);
+  background: rgba(232, 90, 0, 0.15);
+  border: 1px solid rgba(232, 90, 0, 0.3);
+  color: var(--md-dragons-orange-light);
 }
 
 .md-badge-partner {
-  background: rgba(255, 107, 0, 0.12);
-  border: 1px solid rgba(255, 107, 0, 0.25);
-  color: var(--md-partner-accent);
+  background: rgba(255, 107, 0, 0.2);
+  border: 1px solid rgba(255, 107, 0, 0.4);
+  color: var(--md-partner-accent-light);
 }
 
 .md-badge-muted {
-  background: var(--md-surface-2);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--md-border);
   color: var(--md-text-muted);
 }
@@ -267,9 +274,9 @@ body {
   align-items: center;
   height: 2.25rem;
   padding-inline: 1rem;
-  border-radius: 9999px;
+  border-radius: 6px;
   border: 1px solid var(--md-border);
-  background: var(--md-surface-1);
+  background: rgba(255, 255, 255, 0.03);
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--md-text-secondary);
@@ -279,19 +286,19 @@ body {
 
 .md-chip:hover {
   border-color: var(--md-border-hover);
-  background: var(--md-surface-2);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--md-text-primary);
 }
 
 .md-chip-active {
-  border-color: var(--md-dragons-turq);
-  background: rgba(0, 212, 255, 0.1);
-  color: var(--md-dragons-turq);
+  border-color: var(--md-dragons-orange);
+  background: rgba(232, 90, 0, 0.15);
+  color: var(--md-dragons-orange-light);
 }
 
 .md-chip-active:hover {
-  border-color: var(--md-dragons-turq);
-  background: rgba(0, 212, 255, 0.15);
+  border-color: var(--md-dragons-orange);
+  background: rgba(232, 90, 0, 0.2);
 }
 
 /* ===== Scrollbar Hide ===== */
@@ -304,47 +311,22 @@ body {
   display: none;
 }
 
-/* ===== Dynamic Background Pattern ===== */
+/* ===== Dynamic Background Pattern - Disabled ===== */
 .md-bg-pattern {
   position: relative;
 }
 
-.md-bg-pattern::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(135deg, transparent 0%, transparent 49%, rgba(0, 212, 255, 0.03) 50%, transparent 51%, transparent 100%),
-    linear-gradient(45deg, transparent 0%, transparent 49%, rgba(255, 215, 0, 0.02) 50%, transparent 51%, transparent 100%);
-  background-size: 60px 60px;
-  pointer-events: none;
-  opacity: 0.5;
-}
-
-/* ===== Spotlight/Halo Effect ===== */
+/* ===== Spotlight/Halo Effect - Disabled ===== */
 .md-spotlight {
   position: relative;
 }
 
-.md-spotlight::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.08) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: -1;
-}
-
 /* ===== Partner Divider ===== */
 .md-partner-divider {
-  height: 3px;
-  background: linear-gradient(90deg, transparent 0%, var(--md-partner-accent) 50%, transparent 100%);
-  opacity: 0.4;
-  border-radius: 2px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--md-border) 50%, transparent 100%);
+  opacity: 0.6;
+  border-radius: 1px;
 }
 
 /* ===== Smooth Scrolling ===== */
@@ -413,17 +395,17 @@ html {
 
 /* ===== Text Utilities ===== */
 .md-headline-hero {
-  font-size: clamp(1.75rem, 5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 
 .md-headline-section {
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 /* ===== Mobile Optimization ===== */

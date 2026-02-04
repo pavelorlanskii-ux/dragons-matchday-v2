@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 type Partner = {
   name: string;
   url: string;
@@ -35,7 +37,7 @@ function OddPill({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group flex min-w-[85px] flex-col items-center justify-center rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] px-4 py-3 transition-all hover:border-[var(--md-partner-accent)]/50 hover:bg-[var(--md-surface-3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-partner-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--md-surface-1)] active:scale-[0.97] sm:min-w-[100px] sm:px-5 sm:py-4"
+      className="group flex min-w-[80px] flex-col items-center justify-center rounded-lg border border-[rgba(255,107,0,0.25)] bg-[rgba(255,107,0,0.08)] px-4 py-3 transition-all hover:border-[rgba(255,107,0,0.5)] hover:bg-[rgba(255,107,0,0.15)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-partner-accent)] active:scale-[0.97] sm:min-w-[90px] sm:px-5"
     >
       <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)] sm:text-xs">{label}</span>
       <span className="mt-1 text-xl font-bold tabular-nums text-[var(--md-partner-accent)] transition-colors group-hover:text-[var(--md-partner-accent-light)] sm:text-2xl">
@@ -60,8 +62,8 @@ export function PartnerOddsBar({
 
   return (
     <div className={`md-card-featured overflow-hidden ${className || ""}`}>
-      {/* Featured badge */}
-      <div className="flex items-center justify-between border-b border-[var(--md-partner-accent)]/15 bg-gradient-to-r from-[var(--md-partner-accent)]/10 to-transparent px-5 py-3 sm:px-6">
+      {/* Featured badge header */}
+      <div className="flex items-center justify-between border-b border-[rgba(255,107,0,0.2)] bg-gradient-to-r from-[rgba(255,107,0,0.15)] to-transparent px-5 py-3 sm:px-6">
         <span className="md-badge md-badge-partner">
           <svg 
             className="mr-1.5 h-3 w-3" 
@@ -73,7 +75,7 @@ export function PartnerOddsBar({
           >
             <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
           </svg>
-          Партнёр матча
+          Партнер матча
         </span>
         <span className="text-xs font-medium text-[var(--md-text-muted)]">Ставки на спорт</span>
       </div>
@@ -82,20 +84,26 @@ export function PartnerOddsBar({
       <div className="flex flex-col gap-5 p-5 sm:p-6 lg:hidden">
         {/* Partner Info */}
         <div className="flex items-center gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-partner-accent)]/20 to-[var(--md-partner-accent)]/5">
-            <span className="text-base font-bold text-[var(--md-partner-accent)]">BB</span>
+          <div className="flex h-14 w-28 shrink-0 items-center justify-center rounded-lg bg-white/5 p-2">
+            <Image
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-dark-BGZ6oktkPUZCZtNjOsngwUFa5q4gw4.svg"
+              alt="BetBoom"
+              width={100}
+              height={32}
+              className="h-auto w-full"
+            />
           </div>
           <div>
             <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">
-              Официальный партнёр
+              Официальный партнер
             </div>
             <a
               href={partner.url}
               target="_blank"
               rel="noreferrer"
-              className="mt-0.5 block text-xl font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-partner-accent)]"
+              className="mt-0.5 block text-lg font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-partner-accent)]"
             >
-              {partner.logoText || partner.name}
+              {partner.name}
             </a>
           </div>
         </div>
@@ -110,7 +118,7 @@ export function PartnerOddsBar({
           <OddPill label="П2" value={odds?.p2} href={ctaHref} />
         </div>
 
-        {/* CTA Button - Full width, large tap target */}
+        {/* CTA Button */}
         <a
           href={ctaHref}
           target="_blank"
@@ -131,12 +139,18 @@ export function PartnerOddsBar({
         <div className="flex items-center justify-between gap-8">
           {/* Partner Info */}
           <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-partner-accent)]/20 to-[var(--md-partner-accent)]/5">
-              <span className="text-lg font-bold text-[var(--md-partner-accent)]">BB</span>
+            <div className="flex h-16 w-32 shrink-0 items-center justify-center rounded-lg bg-white/5 p-3">
+              <Image
+                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-dark-BGZ6oktkPUZCZtNjOsngwUFa5q4gw4.svg"
+                alt="BetBoom"
+                width={120}
+                height={36}
+                className="h-auto w-full"
+              />
             </div>
             <div>
               <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">
-                Официальный партнёр
+                Официальный партнер
               </div>
               <a
                 href={partner.url}
@@ -144,7 +158,7 @@ export function PartnerOddsBar({
                 rel="noreferrer"
                 className="mt-1 block text-2xl font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-partner-accent)]"
               >
-                {partner.logoText || partner.name}
+                {partner.name}
               </a>
             </div>
           </div>
@@ -169,7 +183,7 @@ export function PartnerOddsBar({
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-5 border-t border-[var(--md-border)] pt-4 text-xs text-[var(--md-text-muted)]">
+        <div className="mt-5 border-t border-[rgba(255,107,0,0.15)] pt-4 text-xs text-[var(--md-text-muted)]">
           {disclaimer}
         </div>
       </div>

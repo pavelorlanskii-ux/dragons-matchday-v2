@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 const NAV_GROUPS = [
   {
@@ -121,20 +122,24 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--md-border)] bg-[var(--md-bg)]/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[var(--md-container)] items-center justify-between px-4 py-3 md:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 border-b border-[var(--md-border)] bg-[#0A1628]/95 backdrop-blur-md">
+      <div className="mx-auto flex max-w-[var(--md-container)] items-center justify-between px-4 py-2 md:px-6 lg:px-8">
         {/* Logo */}
         <a
           href="https://hc-dragons.com"
-          className="flex items-center gap-2.5 text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-dragons-turq)]"
+          className="flex items-center gap-3 text-[var(--md-text-primary)] transition-opacity hover:opacity-90"
           aria-label="ХК Шанхай Дрэгонс - На главную"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-yellow)]/10 ring-1 ring-[var(--md-dragons-turq)]/20">
-            <span className="text-xs font-bold text-[var(--md-dragons-turq)]">SD</span>
-          </div>
+          <Image
+            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo_shanghai_dragons-eqwQmq5qeqBywOfBKKRfWPikvc6nrQ.png"
+            alt="Шанхай Дрэгонс"
+            width={48}
+            height={48}
+            className="h-12 w-12"
+          />
           <div className="hidden sm:block">
-            <div className="text-sm font-bold leading-tight">Шанхай</div>
-            <div className="text-[11px] font-medium text-[var(--md-text-muted)]">Дрэгонс</div>
+            <div className="text-base font-bold leading-tight tracking-tight">Шанхай Дрэгонс</div>
+            <div className="text-[11px] font-medium text-[var(--md-text-muted)]">Хоккейный клуб</div>
           </div>
         </a>
 
@@ -151,8 +156,8 @@ export function Header() {
                 type="button"
                 className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   openDropdown === group.label
-                    ? "bg-[var(--md-surface-2)] text-[var(--md-dragons-turq)]"
-                    : "text-[var(--md-text-secondary)] hover:bg-[var(--md-surface-1)] hover:text-[var(--md-text-primary)]"
+                    ? "bg-white/10 text-white"
+                    : "text-[var(--md-text-secondary)] hover:bg-white/5 hover:text-[var(--md-text-primary)]"
                 }`}
                 aria-expanded={openDropdown === group.label}
                 aria-haspopup="true"
@@ -163,12 +168,12 @@ export function Header() {
               
               {openDropdown === group.label && (
                 <div className="absolute left-0 top-full z-50 min-w-[180px] pt-2">
-                  <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-1)] p-1.5 shadow-lg">
+                  <div className="rounded-lg border border-[var(--md-border)] bg-[#0F1D32]/98 p-1.5 shadow-xl backdrop-blur-md">
                     {group.items.map((item) => (
                       <a
                         key={item.label}
                         href={item.href}
-                        className="block rounded-lg px-3 py-2 text-sm text-[var(--md-text-secondary)] transition-colors hover:bg-[var(--md-surface-2)] hover:text-[var(--md-text-primary)]"
+                        className="block rounded-md px-3 py-2 text-sm text-[var(--md-text-secondary)] transition-colors hover:bg-white/10 hover:text-[var(--md-text-primary)]"
                       >
                         {item.label}
                       </a>
@@ -206,7 +211,7 @@ export function Header() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--md-text-muted)] transition-colors hover:bg-[var(--md-surface-2)] hover:text-[var(--md-dragons-turq)]"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--md-text-muted)] transition-colors hover:bg-white/10 hover:text-white"
                 aria-label={social.label}
               >
                 {social.icon === "vk" && (
@@ -227,7 +232,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setLang(lang === "ru" ? "en" : "ru")}
-            className="flex h-9 items-center gap-1 rounded-lg border border-[var(--md-border)] px-2.5 text-sm font-medium text-[var(--md-text-secondary)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-[var(--md-surface-1)]"
+            className="flex h-9 items-center gap-1 rounded-lg border border-[var(--md-border)] px-2.5 text-sm font-medium text-[var(--md-text-secondary)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-white/5"
             aria-label={`Переключить язык на ${lang === "ru" ? "English" : "Русский"}`}
           >
             {lang === "ru" ? "Ru" : "En"}
@@ -251,12 +256,12 @@ export function Header() {
       {mobileOpen && (
         <>
           <div
-            className="fixed inset-0 top-[57px] z-40 bg-[var(--md-bg)]/80 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 top-[65px] z-40 bg-[#0A1628]/90 backdrop-blur-sm lg:hidden"
             onClick={() => setMobileOpen(false)}
             aria-hidden="true"
           />
           <nav
-            className="fixed left-0 right-0 top-[57px] z-50 max-h-[calc(100vh-57px)] overflow-y-auto border-b border-[var(--md-border)] bg-[var(--md-surface-1)] lg:hidden"
+            className="fixed left-0 right-0 top-[65px] z-50 max-h-[calc(100vh-65px)] overflow-y-auto border-b border-[var(--md-border)] bg-[#0F1D32]/98 backdrop-blur-md lg:hidden"
             aria-label="Мобильная навигация"
           >
             <div className="p-4">
@@ -281,7 +286,7 @@ export function Header() {
               {/* Navigation Groups */}
               <div className="space-y-1.5">
                 {NAV_GROUPS.map((group) => (
-                  <div key={group.label} className="overflow-hidden rounded-xl border border-[var(--md-border)] bg-[var(--md-bg)]">
+                  <div key={group.label} className="overflow-hidden rounded-lg border border-[var(--md-border)] bg-[#0A1628]/50">
                     <button
                       type="button"
                       onClick={() => setMobileAccordion(mobileAccordion === group.label ? null : group.label)}
@@ -292,13 +297,13 @@ export function Header() {
                       <ChevronDown className={`transition-transform ${mobileAccordion === group.label ? "rotate-180" : ""}`} />
                     </button>
                     {mobileAccordion === group.label && (
-                      <div className="border-t border-[var(--md-border)] bg-[var(--md-surface-2)] px-4 py-2">
+                      <div className="border-t border-[var(--md-border)] bg-white/5 px-4 py-2">
                         {group.items.map((item) => (
                           <a
                             key={item.label}
                             href={item.href}
                             onClick={() => setMobileOpen(false)}
-                            className="block rounded-lg px-2 py-2.5 text-sm text-[var(--md-text-secondary)] transition-colors hover:text-[var(--md-text-primary)]"
+                            className="block rounded-md px-2 py-2.5 text-sm text-[var(--md-text-secondary)] transition-colors hover:text-[var(--md-text-primary)]"
                           >
                             {item.label}
                           </a>

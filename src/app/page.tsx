@@ -9,10 +9,44 @@ import { ActivityCardGrid } from "@/components/ActivityCardGrid";
 import { OffersGrid } from "@/components/OffersGrid";
 import { CTASection } from "@/components/CTASection";
 import { PartnerOddsBar } from "@/components/PartnerOddsBar";
+import Image from "next/image";
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen flex-col bg-[var(--md-bg)] text-[var(--md-text-primary)]">
+    <div className="relative flex min-h-screen flex-col text-[var(--md-text-primary)]">
+      {/* Background Pattern */}
+      <div className="fixed inset-0 z-0">
+        <Image
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%BF%D0%B0%D1%82%D1%82%D0%B5%D1%80%D0%BD-UZl85fq2cADJVF10CvuMk1iKkBw337.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/90 via-[#0A1628]/85 to-[#0A1628]/95" />
+      </div>
+
+      {/* Decorative Clouds - Sparse placement */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+        {/* Top left cloud */}
+        <Image
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/18-EK9ObLgUG8eQmlkLEqtYJIaJKcH9HU.png"
+          alt=""
+          width={280}
+          height={160}
+          className="absolute -left-20 top-[15%] opacity-20"
+        />
+        {/* Bottom right cloud */}
+        <Image
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/15-QcP9iwKQDO0sK8r6g78Ux4EjOCCnpL.png"
+          alt=""
+          width={320}
+          height={180}
+          className="absolute -right-24 bottom-[20%] opacity-15"
+        />
+      </div>
+
       {/* Skip Link */}
       <a href="#main-content" className="md-skip-link">
         Перейти к основному содержимому
@@ -20,7 +54,7 @@ export default function Page() {
 
       <Header />
 
-      <main id="main-content" className="flex-1">
+      <main id="main-content" className="relative z-10 flex-1">
         {/* Hero Section - Poster-like with dynamic background */}
         <HeroSection
           title="Вечер хоккея и шоу на арене"
@@ -90,7 +124,9 @@ export default function Page() {
         </div>
       </main>
 
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   );
 }
