@@ -1,5 +1,5 @@
 const PARTNERS = [
-  { name: "BetBoom", href: "https://betboom.ru" },
+  { name: "BetBoom", href: "https://betboom.ru", featured: true },
   { name: "Дом Книги", href: "#" },
   { name: "Imperial Orchestra", href: "#" },
 ];
@@ -48,21 +48,25 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="md-footer border-t border-[var(--md-border)] bg-[var(--md-bg-secondary)]">
+    <footer className="border-t border-[var(--md-border)] bg-[var(--md-bg)]">
       {/* Partners Bar */}
       <div className="border-b border-[var(--md-border)]">
         <div className="mx-auto max-w-[var(--md-container)] px-4 py-6 md:px-6 lg:px-8">
-          <div className="mb-3 text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">
+          <div className="mb-3 text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">
             Партнёры клуба
           </div>
-          <div className="flex flex-wrap items-center gap-4 md:gap-6">
+          <div className="flex flex-wrap items-center gap-3 md:gap-4">
             {PARTNERS.map((partner) => (
               <a
                 key={partner.name}
                 href={partner.href}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-lg bg-[var(--md-surface)] px-4 py-2 text-sm font-medium text-[var(--md-text-secondary)] transition-colors hover:bg-[var(--md-surface-hover)] hover:text-[var(--md-text-primary)]"
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+                  partner.featured 
+                    ? "border border-[var(--md-partner-accent)]/20 bg-[var(--md-partner-accent)]/10 text-[var(--md-partner-accent)] hover:bg-[var(--md-partner-accent)]/15" 
+                    : "bg-[var(--md-surface-1)] text-[var(--md-text-secondary)] hover:bg-[var(--md-surface-2)] hover:text-[var(--md-text-primary)]"
+                }`}
               >
                 {partner.name}
               </a>
@@ -72,7 +76,7 @@ export function Footer() {
       </div>
 
       {/* Navigation */}
-      <div className="mx-auto max-w-[var(--md-container)] px-4 py-10 md:px-6 md:py-12 lg:px-8 lg:py-16">
+      <div className="mx-auto max-w-[var(--md-container)] px-4 py-10 md:px-6 md:py-12 lg:px-8 lg:py-14">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {NAV_COLUMNS.map((column) => (
             <div key={column.title}>
@@ -82,7 +86,7 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-accent)]"
+                      className="text-sm text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-dragons-turq)]"
                     >
                       {link.label}
                     </a>
@@ -99,8 +103,8 @@ export function Footer() {
         <div className="mx-auto flex max-w-[var(--md-container)] flex-col items-center justify-between gap-4 px-4 py-6 md:flex-row md:px-6 lg:px-8">
           {/* Logo + Copyright */}
           <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--md-accent)]/20 to-[var(--md-yellow)]/10">
-              <span className="text-[10px] font-bold text-[var(--md-accent)]">SD</span>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-yellow)]/10">
+              <span className="text-[10px] font-bold text-[var(--md-dragons-turq)]">SD</span>
             </div>
             <div className="text-sm text-[var(--md-text-muted)]">
               &copy; {new Date().getFullYear()} ХК Шанхай Дрэгонс. Все права защищены.
@@ -115,7 +119,7 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--md-border)] text-[var(--md-text-muted)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-[var(--md-surface-hover)] hover:text-[var(--md-accent)]"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--md-border)] text-[var(--md-text-muted)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-[var(--md-surface-1)] hover:text-[var(--md-dragons-turq)]"
                 aria-label={social.label}
               >
                 {social.icon === "vk" && (

@@ -1,85 +1,73 @@
 @import "tailwindcss";
 
 :root {
-  /* ===== Matchday Prefixed Variables (md-) ===== */
-  /* Brand Colors */
-  --md-accent: #00D4FF;
-  --md-accent-dark: #00B8E6;
-  --md-accent-light: #33DDFF;
-  --md-yellow: #FFD700;
-  --md-yellow-dark: #E6C200;
-  --md-yellow-light: #FFE033;
-  --md-red: #FF4444;
-  --md-red-dark: #E63333;
+  /* ===== Dragons Brand System ===== */
+  --md-dragons-turq: #00D4FF;
+  --md-dragons-turq-dark: #00B8E6;
+  --md-dragons-turq-light: #33DDFF;
+  --md-dragons-yellow: #FFD700;
+  --md-dragons-yellow-dark: #E6C200;
+  --md-dragons-yellow-light: #FFE44D;
+  --md-dragons-red: #FF4444;
+  --md-dragons-red-dark: #E63333;
 
-  /* Background */
-  --md-bg: #0A0A0A;
-  --md-bg-secondary: #111111;
-  --md-surface: #161616;
-  --md-surface-hover: #1E1E1E;
+  /* ===== Partner Overlay (BetBoom) ===== */
+  --md-partner-accent: #FF6B00;
+  --md-partner-accent-light: #FF8533;
+  --md-partner-accent-glow: rgba(255, 107, 0, 0.15);
+
+  /* ===== Surfaces ===== */
+  --md-bg: #050507;
+  --md-bg-secondary: #0C0C10;
+  --md-surface-1: #111116;
+  --md-surface-2: #18181D;
+  --md-surface-3: #1F1F26;
+  --md-surface-hover: #242430;
   
-  /* Text */
+  /* ===== Text ===== */
   --md-text-primary: #FFFFFF;
-  --md-text-secondary: #D4D4D4;
-  --md-text-muted: #8A8A8A;
+  --md-text-secondary: #B8B8C4;
+  --md-text-muted: #6B6B7B;
   
-  /* Borders */
-  --md-border: rgba(255, 255, 255, 0.08);
-  --md-border-hover: rgba(255, 255, 255, 0.15);
+  /* ===== Borders & Shadows ===== */
+  --md-border: rgba(255, 255, 255, 0.06);
+  --md-border-subtle: rgba(255, 255, 255, 0.04);
+  --md-border-hover: rgba(255, 255, 255, 0.12);
+  --md-border-accent: var(--md-dragons-turq);
+  
+  --md-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --md-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
+  --md-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --md-shadow-glow-turq: 0 0 40px rgba(0, 212, 255, 0.15);
+  --md-shadow-glow-yellow: 0 0 40px rgba(255, 215, 0, 0.12);
+  --md-shadow-glow-partner: 0 0 40px var(--md-partner-accent-glow);
 
-  /* Layout */
+  /* ===== Layout ===== */
   --md-container: 1200px;
-  --md-section-gap: 4rem;
+  --md-section-gap: 3.5rem;
   --md-section-gap-lg: 5rem;
 
-  /* Cards */
-  --md-card-radius: 1.25rem;
-  --md-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --md-card-shadow-hover: 0 8px 24px rgba(0, 212, 255, 0.08);
+  /* ===== Cards ===== */
+  --md-card-radius: 1rem;
+  --md-card-radius-lg: 1.25rem;
 
-  /* Buttons */
-  --md-button-radius: 0.75rem;
+  /* ===== Buttons ===== */
+  --md-button-radius: 0.625rem;
   --md-button-height: 2.75rem;
-  --md-button-height-lg: 3rem;
+  --md-button-height-lg: 3.25rem;
+  --md-button-height-xl: 3.5rem;
 
-  /* ===== Legacy Variables (for backwards compatibility) ===== */
-  --brand-turquoise: var(--md-accent);
-  --brand-turquoise-dark: var(--md-accent-dark);
-  --brand-turquoise-light: var(--md-accent-light);
-  --brand-yellow: var(--md-yellow);
-  --brand-yellow-dark: var(--md-yellow-dark);
-  --brand-yellow-light: var(--md-yellow-light);
-  --brand-red: var(--md-red);
-  --brand-red-dark: var(--md-red-dark);
-
-  --bg-primary: var(--md-bg);
-  --bg-secondary: var(--md-bg-secondary);
-  --bg-surface: var(--md-surface);
-  --bg-surface-hover: var(--md-surface-hover);
-  
-  --text-primary: var(--md-text-primary);
-  --text-secondary: var(--md-text-secondary);
-  --text-muted: var(--md-text-muted);
-  --text-disabled: #555555;
-  
-  --border-default: var(--md-border);
-  --border-hover: var(--md-border-hover);
-  --border-accent: var(--md-accent);
-
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.25rem;
-  --radius-button: var(--md-button-radius);
-  --radius-card: var(--md-card-radius);
-
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --shadow-card: var(--md-card-shadow);
-  --shadow-card-hover: var(--md-card-shadow-hover);
-
-  --container-max-width: var(--md-container);
+  /* ===== Legacy aliases ===== */
+  --md-accent: var(--md-dragons-turq);
+  --md-accent-dark: var(--md-dragons-turq-dark);
+  --md-accent-light: var(--md-dragons-turq-light);
+  --md-yellow: var(--md-dragons-yellow);
+  --md-yellow-dark: var(--md-dragons-yellow-dark);
+  --md-yellow-light: var(--md-dragons-yellow-light);
+  --md-red: var(--md-dragons-red);
+  --md-red-dark: var(--md-dragons-red-dark);
+  --md-surface: var(--md-surface-1);
+  --md-bg-secondary: var(--md-bg-secondary);
 }
 
 @theme inline {
@@ -97,82 +85,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ===== Matchday Utility Classes (md-*) ===== */
-
-/* Card System */
-.md-card {
-  border-radius: var(--md-card-radius);
-  border: 1px solid var(--md-border);
-  background: var(--md-surface);
-  box-shadow: var(--md-card-shadow);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.md-card:hover {
-  box-shadow: var(--md-card-shadow-hover);
-  border-color: var(--md-border-hover);
-}
-
-/* Buttons */
-.md-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: var(--md-button-height);
-  padding-inline: 1.25rem;
-  border-radius: var(--md-button-radius);
-  font-size: 0.875rem;
-  font-weight: 600;
-  transition: all 0.15s ease;
-}
-
-.md-btn:active {
-  transform: scale(0.98);
-}
-
-.md-btn-primary {
-  background: var(--md-yellow);
-  color: var(--md-bg);
-}
-
-.md-btn-primary:hover {
-  background: var(--md-yellow-dark);
-  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.25);
-}
-
-.md-btn-secondary {
-  background: transparent;
-  border: 1px solid var(--md-border);
-  color: var(--md-text-secondary);
-}
-
-.md-btn-secondary:hover {
-  background: var(--md-surface-hover);
-  border-color: var(--md-border-hover);
-}
-
-.md-btn-accent {
-  background: var(--md-accent);
-  color: var(--md-bg);
-}
-
-.md-btn-accent:hover {
-  background: var(--md-accent-dark);
-  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.25);
-}
-
-/* Section spacing */
-.md-section {
-  margin-bottom: var(--md-section-gap);
-}
-
-@media (min-width: 768px) {
-  .md-section {
-    margin-bottom: var(--md-section-gap-lg);
-  }
-}
-
-/* Container */
+/* ===== Matchday Container ===== */
 .md-container {
   width: 100%;
   max-width: var(--md-container);
@@ -192,7 +105,196 @@ body {
   }
 }
 
-/* Scrollbar hide */
+/* ===== Section Spacing ===== */
+.md-section {
+  margin-bottom: var(--md-section-gap);
+}
+
+@media (min-width: 768px) {
+  .md-section {
+    margin-bottom: var(--md-section-gap-lg);
+  }
+}
+
+/* ===== Card System ===== */
+.md-card {
+  position: relative;
+  border-radius: var(--md-card-radius);
+  border: 1px solid var(--md-border);
+  background: var(--md-surface-1);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.md-card:hover {
+  border-color: var(--md-border-hover);
+}
+
+.md-card-featured {
+  border-radius: var(--md-card-radius-lg);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+  background: linear-gradient(135deg, var(--md-surface-1) 0%, rgba(255, 107, 0, 0.03) 100%);
+  box-shadow: var(--md-shadow-glow-partner);
+}
+
+.md-card-featured:hover {
+  border-color: rgba(255, 107, 0, 0.35);
+}
+
+.md-card-hero {
+  border-radius: var(--md-card-radius-lg);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  background: var(--md-surface-1);
+  box-shadow: var(--md-shadow-glow-turq);
+}
+
+.md-card-hero:hover {
+  border-color: rgba(0, 212, 255, 0.25);
+  box-shadow: 0 0 60px rgba(0, 212, 255, 0.2);
+}
+
+/* ===== Button System ===== */
+.md-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--md-button-height);
+  padding-inline: 1.25rem;
+  border-radius: var(--md-button-radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.md-btn:active {
+  transform: scale(0.98);
+}
+
+.md-btn-lg {
+  height: var(--md-button-height-lg);
+  padding-inline: 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.md-btn-xl {
+  height: var(--md-button-height-xl);
+  padding-inline: 1.75rem;
+  font-size: 1rem;
+}
+
+.md-btn-primary {
+  background: var(--md-dragons-yellow);
+  color: var(--md-bg);
+}
+
+.md-btn-primary:hover {
+  background: var(--md-dragons-yellow-dark);
+  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
+}
+
+.md-btn-secondary {
+  background: transparent;
+  border: 1px solid var(--md-border);
+  color: var(--md-text-secondary);
+}
+
+.md-btn-secondary:hover {
+  background: var(--md-surface-hover);
+  border-color: var(--md-border-hover);
+  color: var(--md-text-primary);
+}
+
+.md-btn-accent {
+  background: var(--md-dragons-turq);
+  color: var(--md-bg);
+}
+
+.md-btn-accent:hover {
+  background: var(--md-dragons-turq-dark);
+  box-shadow: 0 4px 16px rgba(0, 212, 255, 0.3);
+}
+
+.md-btn-partner {
+  background: var(--md-partner-accent);
+  color: white;
+}
+
+.md-btn-partner:hover {
+  background: var(--md-partner-accent-light);
+  box-shadow: 0 4px 16px var(--md-partner-accent-glow);
+}
+
+/* ===== Badge System ===== */
+.md-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.md-badge-turq {
+  background: rgba(0, 212, 255, 0.12);
+  border: 1px solid rgba(0, 212, 255, 0.25);
+  color: var(--md-dragons-turq);
+}
+
+.md-badge-yellow {
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  color: var(--md-dragons-yellow);
+}
+
+.md-badge-partner {
+  background: rgba(255, 107, 0, 0.12);
+  border: 1px solid rgba(255, 107, 0, 0.25);
+  color: var(--md-partner-accent);
+}
+
+.md-badge-muted {
+  background: var(--md-surface-2);
+  border: 1px solid var(--md-border);
+  color: var(--md-text-muted);
+}
+
+/* ===== Chip System ===== */
+.md-chip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 2.25rem;
+  padding-inline: 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--md-border);
+  background: var(--md-surface-1);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--md-text-secondary);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.md-chip:hover {
+  border-color: var(--md-border-hover);
+  background: var(--md-surface-2);
+  color: var(--md-text-primary);
+}
+
+.md-chip-active {
+  border-color: var(--md-dragons-turq);
+  background: rgba(0, 212, 255, 0.1);
+  color: var(--md-dragons-turq);
+}
+
+.md-chip-active:hover {
+  border-color: var(--md-dragons-turq);
+  background: rgba(0, 212, 255, 0.15);
+}
+
+/* ===== Scrollbar Hide ===== */
 .md-scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -202,17 +304,50 @@ body {
   display: none;
 }
 
-/* Legacy scrollbar-hide class */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* ===== Dynamic Background Pattern ===== */
+.md-bg-pattern {
+  position: relative;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+.md-bg-pattern::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(135deg, transparent 0%, transparent 49%, rgba(0, 212, 255, 0.03) 50%, transparent 51%, transparent 100%),
+    linear-gradient(45deg, transparent 0%, transparent 49%, rgba(255, 215, 0, 0.02) 50%, transparent 51%, transparent 100%);
+  background-size: 60px 60px;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
-/* Smooth scrolling */
+/* ===== Spotlight/Halo Effect ===== */
+.md-spotlight {
+  position: relative;
+}
+
+.md-spotlight::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ===== Partner Divider ===== */
+.md-partner-divider {
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--md-partner-accent) 50%, transparent 100%);
+  opacity: 0.4;
+  border-radius: 2px;
+}
+
+/* ===== Smooth Scrolling ===== */
 html {
   scroll-behavior: smooth;
 }
@@ -229,21 +364,26 @@ html {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  
+  .md-spotlight::after,
+  .md-bg-pattern::before {
+    display: none;
+  }
 }
 
-/* Focus styles for accessibility */
+/* ===== Focus Styles ===== */
 *:focus-visible {
-  outline: 2px solid var(--md-accent);
+  outline: 2px solid var(--md-dragons-turq);
   outline-offset: 2px;
 }
 
-/* Skip link */
+/* ===== Skip Link ===== */
 .md-skip-link {
   position: absolute;
   top: -100%;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--md-yellow);
+  background: var(--md-dragons-yellow);
   color: var(--md-bg);
   padding: 0.75rem 1.5rem;
   border-radius: var(--md-button-radius);
@@ -254,4 +394,45 @@ html {
 
 .md-skip-link:focus {
   top: 1rem;
+}
+
+/* ===== Noise/Grain Texture ===== */
+.md-noise {
+  position: relative;
+}
+
+.md-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* ===== Text Utilities ===== */
+.md-headline-hero {
+  font-size: clamp(1.75rem, 5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.md-headline-section {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ===== Mobile Optimization ===== */
+@media (max-width: 430px) {
+  :root {
+    --md-section-gap: 2.5rem;
+  }
+  
+  .md-container {
+    padding-inline: 1rem;
+  }
 }

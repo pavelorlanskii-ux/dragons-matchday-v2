@@ -96,7 +96,6 @@ export function Header() {
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = "hidden";
@@ -122,25 +121,25 @@ export function Header() {
   };
 
   return (
-    <header className="md-header sticky top-0 z-50 border-b border-[var(--md-border)] bg-[var(--md-surface)]/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[var(--md-border)] bg-[var(--md-bg)]/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-[var(--md-container)] items-center justify-between px-4 py-3 md:px-6 lg:px-8">
         {/* Logo */}
         <a
           href="https://hc-dragons.com"
-          className="flex items-center gap-2 text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-accent)]"
+          className="flex items-center gap-2.5 text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-dragons-turq)]"
           aria-label="ХК Шанхай Дрэгонс - На главную"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--md-accent)]/20 to-[var(--md-yellow)]/10">
-            <span className="text-xs font-bold text-[var(--md-accent)]">SD</span>
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-yellow)]/10 ring-1 ring-[var(--md-dragons-turq)]/20">
+            <span className="text-xs font-bold text-[var(--md-dragons-turq)]">SD</span>
           </div>
           <div className="hidden sm:block">
             <div className="text-sm font-bold leading-tight">Шанхай</div>
-            <div className="text-xs font-medium text-[var(--md-text-muted)]">Дрэгонс</div>
+            <div className="text-[11px] font-medium text-[var(--md-text-muted)]">Дрэгонс</div>
           </div>
         </a>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Основная навигация">
+        <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Основная навигация">
           {NAV_GROUPS.map((group) => (
             <div
               key={group.label}
@@ -152,8 +151,8 @@ export function Header() {
                 type="button"
                 className={`flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
                   openDropdown === group.label
-                    ? "bg-[var(--md-surface-hover)] text-[var(--md-accent)]"
-                    : "text-[var(--md-text-secondary)] hover:bg-[var(--md-surface-hover)] hover:text-[var(--md-text-primary)]"
+                    ? "bg-[var(--md-surface-2)] text-[var(--md-dragons-turq)]"
+                    : "text-[var(--md-text-secondary)] hover:bg-[var(--md-surface-1)] hover:text-[var(--md-text-primary)]"
                 }`}
                 aria-expanded={openDropdown === group.label}
                 aria-haspopup="true"
@@ -162,15 +161,14 @@ export function Header() {
                 <ChevronDown className={`transition-transform ${openDropdown === group.label ? "rotate-180" : ""}`} />
               </button>
               
-              {/* Dropdown */}
               {openDropdown === group.label && (
                 <div className="absolute left-0 top-full z-50 min-w-[180px] pt-2">
-                  <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface)] p-2 shadow-lg">
+                  <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-1)] p-1.5 shadow-lg">
                     {group.items.map((item) => (
                       <a
                         key={item.label}
                         href={item.href}
-                        className="block rounded-lg px-3 py-2 text-sm text-[var(--md-text-secondary)] transition-colors hover:bg-[var(--md-surface-hover)] hover:text-[var(--md-text-primary)]"
+                        className="block rounded-lg px-3 py-2 text-sm text-[var(--md-text-secondary)] transition-colors hover:bg-[var(--md-surface-2)] hover:text-[var(--md-text-primary)]"
                       >
                         {item.label}
                       </a>
@@ -183,22 +181,22 @@ export function Header() {
         </nav>
 
         {/* Utility Links + Social + Language - Desktop */}
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2 lg:flex">
           {UTILITY_LINKS.map((link) => (
             <a
               key={link.label}
               href={link.href}
               className={
                 link.primary
-                  ? "inline-flex h-9 items-center justify-center rounded-lg bg-[var(--md-yellow)] px-4 text-sm font-semibold text-[var(--md-bg)] transition-all hover:bg-[var(--md-yellow-dark)] hover:shadow-md active:scale-[0.98]"
-                  : "inline-flex h-9 items-center justify-center rounded-lg border border-[var(--md-border)] px-3 text-sm font-medium text-[var(--md-text-secondary)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-[var(--md-surface-hover)] hover:text-[var(--md-text-primary)]"
+                  ? "md-btn md-btn-primary"
+                  : "md-btn md-btn-secondary"
               }
             >
               {link.label}
             </a>
           ))}
 
-          <div className="mx-1 h-5 w-px bg-[var(--md-border)]" aria-hidden="true" />
+          <div className="mx-2 h-5 w-px bg-[var(--md-border)]" aria-hidden="true" />
 
           {/* Social */}
           <div className="flex items-center gap-1">
@@ -208,7 +206,7 @@ export function Header() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--md-text-muted)] transition-colors hover:bg-[var(--md-surface-hover)] hover:text-[var(--md-accent)]"
+                className="flex h-9 w-9 items-center justify-center rounded-lg text-[var(--md-text-muted)] transition-colors hover:bg-[var(--md-surface-2)] hover:text-[var(--md-dragons-turq)]"
                 aria-label={social.label}
               >
                 {social.icon === "vk" && (
@@ -229,7 +227,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setLang(lang === "ru" ? "en" : "ru")}
-            className="flex h-9 items-center gap-1 rounded-lg border border-[var(--md-border)] px-2 text-sm font-medium text-[var(--md-text-secondary)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-[var(--md-surface-hover)]"
+            className="flex h-9 items-center gap-1 rounded-lg border border-[var(--md-border)] px-2.5 text-sm font-medium text-[var(--md-text-secondary)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-[var(--md-surface-1)]"
             aria-label={`Переключить язык на ${lang === "ru" ? "English" : "Русский"}`}
           >
             {lang === "ru" ? "Ru" : "En"}
@@ -241,7 +239,7 @@ export function Header() {
         <button
           type="button"
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--md-text-primary)] transition-colors hover:bg-[var(--md-surface-hover)] lg:hidden"
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--md-text-primary)] transition-colors hover:bg-[var(--md-surface-1)] lg:hidden"
           aria-label={mobileOpen ? "Закрыть меню" : "Открыть меню"}
           aria-expanded={mobileOpen}
         >
@@ -258,7 +256,7 @@ export function Header() {
             aria-hidden="true"
           />
           <nav
-            className="fixed left-0 right-0 top-[57px] z-50 max-h-[calc(100vh-57px)] overflow-y-auto border-b border-[var(--md-border)] bg-[var(--md-surface)] lg:hidden"
+            className="fixed left-0 right-0 top-[57px] z-50 max-h-[calc(100vh-57px)] overflow-y-auto border-b border-[var(--md-border)] bg-[var(--md-surface-1)] lg:hidden"
             aria-label="Мобильная навигация"
           >
             <div className="p-4">
@@ -271,8 +269,8 @@ export function Header() {
                     onClick={() => setMobileOpen(false)}
                     className={
                       link.primary
-                        ? "inline-flex h-10 flex-1 items-center justify-center rounded-xl bg-[var(--md-yellow)] text-sm font-semibold text-[var(--md-bg)] transition-all active:scale-[0.98]"
-                        : "inline-flex h-10 flex-1 items-center justify-center rounded-xl border border-[var(--md-border)] text-sm font-medium text-[var(--md-text-secondary)] transition-colors"
+                        ? "md-btn md-btn-primary md-btn-lg flex-1"
+                        : "md-btn md-btn-secondary md-btn-lg flex-1"
                     }
                   >
                     {link.label}
@@ -281,20 +279,20 @@ export function Header() {
               </div>
 
               {/* Navigation Groups */}
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 {NAV_GROUPS.map((group) => (
-                  <div key={group.label} className="rounded-xl border border-[var(--md-border)] bg-[var(--md-bg-secondary)]">
+                  <div key={group.label} className="overflow-hidden rounded-xl border border-[var(--md-border)] bg-[var(--md-bg)]">
                     <button
                       type="button"
                       onClick={() => setMobileAccordion(mobileAccordion === group.label ? null : group.label)}
-                      className="flex w-full items-center justify-between px-4 py-3 text-left text-base font-medium text-[var(--md-text-primary)]"
+                      className="flex w-full items-center justify-between px-4 py-3.5 text-left text-base font-medium text-[var(--md-text-primary)]"
                       aria-expanded={mobileAccordion === group.label}
                     >
                       {group.label}
                       <ChevronDown className={`transition-transform ${mobileAccordion === group.label ? "rotate-180" : ""}`} />
                     </button>
                     {mobileAccordion === group.label && (
-                      <div className="border-t border-[var(--md-border)] px-4 py-2">
+                      <div className="border-t border-[var(--md-border)] bg-[var(--md-surface-2)] px-4 py-2">
                         {group.items.map((item) => (
                           <a
                             key={item.label}
@@ -320,7 +318,7 @@ export function Header() {
                       href={social.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--md-border)] text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-accent)]"
+                      className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--md-border)] text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-dragons-turq)]"
                       aria-label={social.label}
                     >
                       {social.icon === "vk" && (
@@ -339,7 +337,7 @@ export function Header() {
                 <button
                   type="button"
                   onClick={() => setLang(lang === "ru" ? "en" : "ru")}
-                  className="flex h-10 items-center gap-2 rounded-xl border border-[var(--md-border)] px-4 text-sm font-medium text-[var(--md-text-secondary)]"
+                  className="flex h-11 items-center gap-2 rounded-xl border border-[var(--md-border)] px-4 text-sm font-medium text-[var(--md-text-secondary)]"
                 >
                   {lang === "ru" ? "Русский" : "English"}
                   <ChevronDown />

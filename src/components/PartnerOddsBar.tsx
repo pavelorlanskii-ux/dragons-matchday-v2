@@ -35,10 +35,10 @@ function OddPill({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group flex min-w-[90px] flex-col items-center justify-center rounded-xl border border-[var(--md-border)] bg-[var(--md-bg-secondary)] px-4 py-3 transition-all hover:border-[var(--md-accent)]/40 hover:bg-[var(--md-surface)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--md-surface)] active:scale-[0.97]"
+      className="group flex min-w-[85px] flex-col items-center justify-center rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] px-4 py-3 transition-all hover:border-[var(--md-partner-accent)]/50 hover:bg-[var(--md-surface-3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-partner-accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--md-surface-1)] active:scale-[0.97] sm:min-w-[100px] sm:px-5 sm:py-4"
     >
-      <span className="text-xs font-medium text-[var(--md-text-muted)]">{label}</span>
-      <span className="mt-1 text-xl font-bold text-[var(--md-accent)] transition-colors group-hover:text-[var(--md-accent-light)]">
+      <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)] sm:text-xs">{label}</span>
+      <span className="mt-1 text-xl font-bold tabular-nums text-[var(--md-partner-accent)] transition-colors group-hover:text-[var(--md-partner-accent-light)] sm:text-2xl">
         {formatOdd(value)}
       </span>
     </a>
@@ -54,41 +54,60 @@ export function PartnerOddsBar({
   odds?: Odds;
   className?: string;
 }) {
-  const ctaLabel = odds?.cta?.label ?? odds?.ctaLabel ?? "Сделать ставку";
+  const ctaLabel = odds?.cta?.label ?? odds?.ctaLabel ?? "Перейти на сайт BetBoom";
   const ctaHref = odds?.cta?.href ?? odds?.ctaHref ?? partner?.url ?? "#";
   const disclaimer = odds?.disclaimer ?? "Информация носит справочный характер";
 
   return (
-    <div className={`md-card overflow-hidden ${className || ""}`}>
+    <div className={`md-card-featured overflow-hidden ${className || ""}`}>
+      {/* Featured badge */}
+      <div className="flex items-center justify-between border-b border-[var(--md-partner-accent)]/15 bg-gradient-to-r from-[var(--md-partner-accent)]/10 to-transparent px-5 py-3 sm:px-6">
+        <span className="md-badge md-badge-partner">
+          <svg 
+            className="mr-1.5 h-3 w-3" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2.5"
+            aria-hidden="true"
+          >
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+          </svg>
+          Партнёр матча
+        </span>
+        <span className="text-xs font-medium text-[var(--md-text-muted)]">Ставки на спорт</span>
+      </div>
+
       {/* Mobile Layout */}
       <div className="flex flex-col gap-5 p-5 sm:p-6 lg:hidden">
         {/* Partner Info */}
         <div className="flex items-center gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-accent)]/15 to-[var(--md-yellow)]/10">
-            <span className="text-sm font-bold text-[var(--md-accent)]">BB</span>
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-partner-accent)]/20 to-[var(--md-partner-accent)]/5">
+            <span className="text-base font-bold text-[var(--md-partner-accent)]">BB</span>
           </div>
           <div>
-            <div className="text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">
-              Партнёр матча
+            <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">
+              Официальный партнёр
             </div>
             <a
               href={partner.url}
               target="_blank"
               rel="noreferrer"
-              className="mt-0.5 block text-lg font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-accent)]"
+              className="mt-0.5 block text-xl font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-partner-accent)]"
             >
               {partner.logoText || partner.name}
             </a>
           </div>
         </div>
 
-        {/* Odds Pills - Horizontal scroll */}
-        <div className="overflow-x-auto pb-1 md-scrollbar-hide">
-          <div className="flex min-w-max gap-3">
-            <OddPill label="П1" value={odds?.p1} href={ctaHref} />
-            <OddPill label="X" value={odds?.x} href={ctaHref} />
-            <OddPill label="П2" value={odds?.p2} href={ctaHref} />
-          </div>
+        {/* Odds Title */}
+        <div className="text-sm font-medium text-[var(--md-text-secondary)]">Коэффициенты на матч:</div>
+
+        {/* Odds Pills */}
+        <div className="flex gap-3">
+          <OddPill label="П1" value={odds?.p1} href={ctaHref} />
+          <OddPill label="X" value={odds?.x} href={ctaHref} />
+          <OddPill label="П2" value={odds?.p2} href={ctaHref} />
         </div>
 
         {/* CTA Button - Full width, large tap target */}
@@ -96,34 +115,34 @@ export function PartnerOddsBar({
           href={ctaHref}
           target="_blank"
           rel="noreferrer"
-          className="flex h-14 w-full items-center justify-center rounded-xl bg-[var(--md-yellow)] text-base font-semibold text-[var(--md-bg)] transition-all hover:bg-[var(--md-yellow-dark)] hover:shadow-lg active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-yellow)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--md-surface)]"
+          className="md-btn md-btn-partner md-btn-xl w-full"
         >
           {ctaLabel}
         </a>
 
         {/* Disclaimer */}
-        <div className="border-t border-[var(--md-border)] pt-4 text-xs text-[var(--md-text-muted)]">
+        <div className="text-[11px] leading-relaxed text-[var(--md-text-muted)]">
           {disclaimer}
         </div>
       </div>
 
       {/* Desktop Layout */}
       <div className="hidden p-6 lg:block lg:p-8">
-        <div className="flex items-center justify-between gap-6">
+        <div className="flex items-center justify-between gap-8">
           {/* Partner Info */}
-          <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-accent)]/15 to-[var(--md-yellow)]/10">
-              <span className="text-base font-bold text-[var(--md-accent)]">BB</span>
+          <div className="flex items-center gap-5">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-partner-accent)]/20 to-[var(--md-partner-accent)]/5">
+              <span className="text-lg font-bold text-[var(--md-partner-accent)]">BB</span>
             </div>
             <div>
-              <div className="text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">
-                Партнёр матча
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">
+                Официальный партнёр
               </div>
               <a
                 href={partner.url}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-1 block text-xl font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-accent)]"
+                className="mt-1 block text-2xl font-bold text-[var(--md-text-primary)] transition-colors hover:text-[var(--md-partner-accent)]"
               >
                 {partner.logoText || partner.name}
               </a>
@@ -131,7 +150,8 @@ export function PartnerOddsBar({
           </div>
 
           {/* Odds Pills */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
+            <span className="mr-2 text-sm font-medium text-[var(--md-text-muted)]">Кэфы:</span>
             <OddPill label="П1" value={odds?.p1} href={ctaHref} />
             <OddPill label="X" value={odds?.x} href={ctaHref} />
             <OddPill label="П2" value={odds?.p2} href={ctaHref} />
@@ -142,14 +162,14 @@ export function PartnerOddsBar({
             href={ctaHref}
             target="_blank"
             rel="noreferrer"
-            className="flex h-12 items-center justify-center rounded-xl bg-[var(--md-yellow)] px-8 text-sm font-semibold text-[var(--md-bg)] transition-all hover:bg-[var(--md-yellow-dark)] hover:shadow-lg active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--md-yellow)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--md-surface)]"
+            className="md-btn md-btn-partner md-btn-lg"
           >
             {ctaLabel}
           </a>
         </div>
 
         {/* Disclaimer */}
-        <div className="mt-6 border-t border-[var(--md-border)] pt-4 text-xs text-[var(--md-text-muted)]">
+        <div className="mt-5 border-t border-[var(--md-border)] pt-4 text-xs text-[var(--md-text-muted)]">
           {disclaimer}
         </div>
       </div>

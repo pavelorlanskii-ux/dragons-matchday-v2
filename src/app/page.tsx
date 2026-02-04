@@ -1,6 +1,7 @@
 import { matchday } from "@/data/matchday";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { HeroSection } from "@/components/HeroSection";
 import { MatchCard } from "@/components/MatchCard";
 import { HighlightBanner } from "@/components/HighlightBanner";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -20,44 +21,32 @@ export default function Page() {
       <Header />
 
       <main id="main-content" className="flex-1">
-        {/* Main container */}
-        <div className="md-container py-8 md:py-12 lg:py-16">
-          {/* Hero Section */}
-          <section className="md-section">
-            <h1 className="text-balance text-3xl font-bold leading-tight tracking-tight text-[var(--md-text-primary)] sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-[1.1]">
-              Вечер хоккея и шоу на арене
-            </h1>
-            <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-[var(--md-text-secondary)] sm:text-lg md:mt-5 md:text-xl">
-              Приезжайте заранее, чтобы успеть на активности, сделать фото и поймать правильное матчевое настроение.
-            </p>
-          </section>
+        {/* Hero Section - Poster-like with dynamic background */}
+        <HeroSection
+          title="Вечер хоккея и шоу на арене"
+          subtitle="Приезжайте заранее, чтобы успеть на активности, сделать фото и поймать правильное матчевое настроение."
+          partnerName={matchday.partner.name}
+        >
+          <MatchCard
+            leftMetaLines={matchday.match.leftMetaLines}
+            title={matchday.match.title}
+            homeLogoText={matchday.match.teams.home.logoText}
+            awayLogoText={matchday.match.teams.away.logoText}
+            matchDateIso={matchday.match.matchDateIso}
+            buyHref={matchday.match.ctaBuy.href}
+            homeHref={matchday.match.ctaHome.href}
+            partnerName={matchday.partner.name}
+          />
+        </HeroSection>
 
-          {/* Match Card Section */}
-          <section className="md-section" id="tickets">
-            <MatchCard
-              leftMetaLines={matchday.match.leftMetaLines}
-              title={matchday.match.title}
-              homeLogoText={matchday.match.teams.home.logoText}
-              awayLogoText={matchday.match.teams.away.logoText}
-              matchDateIso={matchday.match.matchDateIso}
-              buyHref={matchday.match.ctaBuy.href}
-              homeHref={matchday.match.ctaHome.href}
-              partnerName={matchday.partner.name}
-            />
-          </section>
-
-          {/* BetBoom Odds Section - Prominent placement */}
+        {/* Main container for remaining content */}
+        <div className="md-container py-2">
+          {/* BetBoom Odds Section - Featured Partner Block */}
           <section className="md-section" id="odds">
-            <SectionHeader
-              title="Коэффициенты партнёра"
-              subtitle="Официальные коэффициенты от BetBoom"
+            <PartnerOddsBar
+              partner={matchday.partner}
+              odds={matchday.odds}
             />
-            <div className="mt-6 md:mt-8">
-              <PartnerOddsBar
-                partner={matchday.partner}
-                odds={matchday.odds}
-              />
-            </div>
           </section>
 
           {/* Highlight Section */}
@@ -69,7 +58,7 @@ export default function Page() {
           <section className="md-section" id="program">
             <SectionHeader
               title="Программа вечера"
-              subtitle="Тайминги есть в данных, но на карточках не показываем. Фильтруйте по интересам и ориентирам."
+              subtitle="Фильтруйте по интересам и ориентирам. Все активности работают в указанное время."
             />
             <div className="mt-6 md:mt-8">
               <ActivityCardGrid
@@ -80,19 +69,22 @@ export default function Page() {
             </div>
           </section>
 
+          {/* Partner Divider */}
+          <div className="md-partner-divider mx-auto mb-10 max-w-[200px] md:mb-14" aria-hidden="true" />
+
           {/* Offers Section */}
           <section className="md-section" id="offers">
             <SectionHeader
               title="Специальные предложения"
-              subtitle="Партнерские предложения и бонусы. Условия смотрите на карточках."
+              subtitle="Партнерские предложения и бонусы для болельщиков."
             />
             <div className="mt-6 md:mt-8">
-              <OffersGrid offers={matchday.offers} />
+              <OffersGrid offers={matchday.offers} partnerName={matchday.partner.name} />
             </div>
           </section>
 
           {/* CTA Section */}
-          <section className="mb-0">
+          <section className="mb-8 md:mb-12" id="tickets">
             <CTASection />
           </section>
         </div>
