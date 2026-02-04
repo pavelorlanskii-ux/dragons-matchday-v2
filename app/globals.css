@@ -67,7 +67,6 @@
   --md-red: var(--md-dragons-red);
   --md-red-dark: var(--md-dragons-red-dark);
   --md-surface: var(--md-surface-1);
-  --md-bg-secondary: var(--md-bg-secondary);
 }
 
 @theme inline {

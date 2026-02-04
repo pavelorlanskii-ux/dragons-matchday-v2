@@ -2,18 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 
-function formatCountdown(ms: number) {
-  if (ms <= 0) return "Матч начался";
-  const total = Math.floor(ms / 1000);
-  const d = Math.floor(total / 86400);
-  const h = Math.floor((total % 86400) / 3600);
-  const m = Math.floor((total % 3600) / 60);
-  
-  if (d > 0) return `${d}д ${h}ч ${m}м`;
-  if (h > 0) return `${h}ч ${m}м`;
-  return `${m}м`;
-}
-
 function CountdownUnit({ value, label }: { value: string; label: string }) {
   return (
     <div className="flex flex-col items-center">
