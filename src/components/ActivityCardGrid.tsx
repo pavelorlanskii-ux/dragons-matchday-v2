@@ -90,17 +90,8 @@ export function ActivityCardGrid({
             key={a.id}
             className="md-card group overflow-hidden transition-transform hover:-translate-y-0.5"
           >
-            {/* Image placeholder with gradient */}
-            <div className="relative aspect-[16/10] bg-gradient-to-br from-[var(--md-dragons-turq)]/8 via-[var(--md-surface-2)] to-[var(--md-dragons-yellow)]/5">
-              {/* Subtle pattern overlay */}
-              <div 
-                className="absolute inset-0 opacity-30"
-                style={{
-                  backgroundImage: `radial-gradient(circle at 30% 70%, var(--md-dragons-turq) 0%, transparent 50%)`
-                }}
-                aria-hidden="true"
-              />
-            </div>
+            {/* Image placeholder */}
+            <div className="relative aspect-[16/10] bg-[var(--md-surface-2)]" />
             
             {/* Content */}
             <div className="p-4 sm:p-5">
@@ -114,7 +105,7 @@ export function ActivityCardGrid({
               </div>
 
               {/* Title */}
-              <h3 className="mt-3 line-clamp-2 text-base font-semibold leading-snug text-[var(--md-text-primary)] transition-colors group-hover:text-[var(--md-dragons-turq)]">
+              <h3 className="mt-3 line-clamp-2 text-base font-semibold leading-snug text-[var(--md-text-primary)]">
                 {a.title}
               </h3>
               
@@ -179,7 +170,7 @@ export function ActivityCardGrid({
           <button
             type="button"
             onClick={() => { setTag("Все"); setBadge("Все"); }}
-            className="mt-3 text-sm font-medium text-[var(--md-dragons-turq)] transition-colors hover:text-[var(--md-dragons-turq-light)]"
+            className="mt-3 text-sm font-medium text-[var(--md-dragons-orange)] transition-colors hover:text-[var(--md-dragons-orange-light)]"
           >
             Сбросить фильтры
           </button>

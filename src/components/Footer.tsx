@@ -1,3 +1,7 @@
+import Image from "next/image";
+
+const CLUB_LOGO = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo_shanghai_dragons-rpqZlKvYrjv48TTGb7Qc3pkrbDbzZJ.png";
+
 const PARTNERS = [
   { name: "BetBoom", href: "https://betboom.ru", featured: true },
   { name: "Дом Книги", href: "#" },
@@ -48,7 +52,7 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-[var(--md-border)] bg-[var(--md-bg)]">
+    <footer className="border-t border-[var(--md-border)] bg-[var(--md-bg)]/90 backdrop-blur-lg">
       {/* Partners Bar */}
       <div className="border-b border-[var(--md-border)]">
         <div className="mx-auto max-w-[var(--md-container)] px-4 py-6 md:px-6 lg:px-8">
@@ -86,7 +90,7 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
-                      className="text-sm text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-dragons-turq)]"
+                      className="text-sm text-[var(--md-text-muted)] transition-colors hover:text-[var(--md-dragons-orange)]"
                     >
                       {link.label}
                     </a>
@@ -103,9 +107,13 @@ export function Footer() {
         <div className="mx-auto flex max-w-[var(--md-container)] flex-col items-center justify-between gap-4 px-4 py-6 md:flex-row md:px-6 lg:px-8">
           {/* Logo + Copyright */}
           <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-yellow)]/10">
-              <span className="text-[10px] font-bold text-[var(--md-dragons-turq)]">SD</span>
-            </div>
+            <Image
+              src={CLUB_LOGO}
+              alt="Шанхай Дрэгонс"
+              width={36}
+              height={36}
+              className="h-9 w-9 object-contain"
+            />
             <div className="text-sm text-[var(--md-text-muted)]">
               &copy; {new Date().getFullYear()} ХК Шанхай Дрэгонс. Все права защищены.
             </div>
@@ -119,7 +127,7 @@ export function Footer() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--md-border)] text-[var(--md-text-muted)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-[var(--md-surface-1)] hover:text-[var(--md-dragons-turq)]"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--md-border)] text-[var(--md-text-muted)] transition-colors hover:border-[var(--md-border-hover)] hover:text-[var(--md-dragons-orange)]"
                 aria-label={social.label}
               >
                 {social.icon === "vk" && (

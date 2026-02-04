@@ -1,5 +1,9 @@
 "use client";
 
+import Image from "next/image";
+
+const BETBOOM_LOGO = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo-dark-Uo5FobMRzYlKViTzKaOGGScifD6wZn.svg";
+
 type Partner = {
   name: string;
   url: string;
@@ -82,8 +86,14 @@ export function PartnerOddsBar({
       <div className="flex flex-col gap-5 p-5 sm:p-6 lg:hidden">
         {/* Partner Info */}
         <div className="flex items-center gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-partner-accent)]/20 to-[var(--md-partner-accent)]/5">
-            <span className="text-base font-bold text-[var(--md-partner-accent)]">BB</span>
+          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[var(--md-partner-accent)]/10">
+            <Image
+              src={BETBOOM_LOGO}
+              alt="BetBoom"
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain"
+            />
           </div>
           <div>
             <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">
@@ -131,8 +141,14 @@ export function PartnerOddsBar({
         <div className="flex items-center justify-between gap-8">
           {/* Partner Info */}
           <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-partner-accent)]/20 to-[var(--md-partner-accent)]/5">
-              <span className="text-lg font-bold text-[var(--md-partner-accent)]">BB</span>
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[var(--md-partner-accent)]/10">
+              <Image
+                src={BETBOOM_LOGO}
+                alt="BetBoom"
+                width={48}
+                height={48}
+                className="h-12 w-12 object-contain"
+              />
             </div>
             <div>
               <div className="text-[10px] font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">
