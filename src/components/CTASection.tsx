@@ -1,14 +1,14 @@
 export function CTASection() {
   return (
-    <section className="md-card-featured overflow-hidden">
-      <div className="p-6 sm:p-8 md:p-10 lg:p-12">
+    <section className="md-card overflow-hidden">
+      <div className="p-6 sm:p-8 md:p-10">
         <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
           {/* Text */}
           <div>
             <h2 className="md-headline-section text-balance text-[var(--md-text-primary)]">
               Увидимся на арене
             </h2>
-            <p className="mt-3 text-base text-[var(--md-text-secondary)] sm:text-lg md:text-xl">
+            <p className="mt-2 text-base text-[var(--md-text-secondary)] sm:text-lg">
               Приходите заранее, чтобы всё успеть
             </p>
           </div>

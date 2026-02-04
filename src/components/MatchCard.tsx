@@ -5,19 +5,16 @@ import Image from "next/image";
 
 const CLUB_LOGO = "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/logo_shanghai_dragons-rpqZlKvYrjv48TTGb7Qc3pkrbDbzZJ.png";
 
-function parseCountdown(ms: number) {
-  if (ms <= 0) return { d: "0", h: "0", m: "0", s: "0" };
+function formatCountdown(ms: number) {
+  if (ms <= 0) return "Матч начался";
   const total = Math.floor(ms / 1000);
   const d = Math.floor(total / 86400);
   const h = Math.floor((total % 86400) / 3600);
   const m = Math.floor((total % 3600) / 60);
-  const s = total % 60;
-  return { 
-    d: String(d).padStart(2, "0"), 
-    h: String(h).padStart(2, "0"), 
-    m: String(m).padStart(2, "0"),
-    s: String(s).padStart(2, "0")
-  };
+  
+  if (d > 0) return `${d}д ${h}ч ${m}м`;
+  if (h > 0) return `${h}ч ${m}м`;
+  return `${m}м`;
 }
 
 function CountdownUnit({ value, label }: { value: string; label: string }) {
@@ -33,12 +30,14 @@ function CountdownUnit({ value, label }: { value: string; label: string }) {
   );
 }
 
-const TICKET_TIERS = [
-  { id: "vip", label: "Купить VIP от 8 750", className: "md-btn-tier md-btn-tier-vip" },
-  { id: "platinum", label: "VTB Platinum", className: "md-btn-tier md-btn-tier-platinum" },
-  { id: "gold", label: "Gold", className: "md-btn-tier md-btn-tier-gold" },
-  { id: "premium", label: "BetBoom Premium", className: "md-btn-tier md-btn-tier-premium" },
-];
+function parseCountdown(ms: number) {
+  if (ms <= 0) return { d: "0", h: "0", m: "0" };
+  const total = Math.floor(ms / 1000);
+  const d = Math.floor(total / 86400);
+  const h = Math.floor((total % 86400) / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  return { d: String(d), h: String(h), m: String(m) };
+}
 
 export function MatchCard(props: {
   leftMetaLines: readonly string[];
@@ -55,7 +54,7 @@ export function MatchCard(props: {
   const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
-    const t = setInterval(() => setNow(Date.now()), 1000);
+    const t = setInterval(() => setNow(Date.now()), 30_000);
     return () => clearInterval(t);
   }, []);
 
@@ -72,7 +71,7 @@ export function MatchCard(props: {
       <div className="flex flex-col gap-4 p-4 sm:p-5 lg:hidden">
         {/* Date / League / Arena */}
         <div className="space-y-1">
-          <div className="text-lg font-bold text-[var(--md-dragons-orange)]">{props.leftMetaLines[0]}</div>
+          <div className="text-lg font-bold text-[var(--md-text-primary)]">{props.leftMetaLines[0]}</div>
           <div className="flex flex-wrap items-center gap-2 text-sm text-[var(--md-text-muted)]">
             <span>{props.leftMetaLines[1]}</span>
             <span className="h-1 w-1 rounded-full bg-[var(--md-text-muted)]" aria-hidden="true" />
@@ -92,11 +91,12 @@ export function MatchCard(props: {
                 height={56}
                 className="h-14 w-14 object-contain"
               />
-              <div className="mt-2 line-clamp-2 text-sm font-bold uppercase text-[var(--md-text-primary)]">{homeName}</div>
+              <div className="mt-2 text-[10px] font-medium uppercase tracking-wide text-[var(--md-text-muted)]">Хозяева</div>
+              <div className="mt-0.5 line-clamp-2 text-sm font-semibold text-[var(--md-text-primary)]">{homeName}</div>
             </div>
 
             {/* VS */}
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center text-lg font-bold text-[var(--md-text-muted)]">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--md-surface-3)] text-sm font-bold text-[var(--md-text-muted)]">
               VS
             </div>
 
@@ -105,40 +105,26 @@ export function MatchCard(props: {
               <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[var(--md-surface-3)] text-xs font-bold text-[var(--md-text-secondary)]">
                 {props.awayLogoText.slice(0, 4).toUpperCase()}
               </div>
-              <div className="mt-2 line-clamp-2 text-sm font-bold uppercase text-[var(--md-text-primary)]">{awayName}</div>
+              <div className="mt-2 text-[10px] font-medium uppercase tracking-wide text-[var(--md-text-muted)]">Гости</div>
+              <div className="mt-0.5 line-clamp-2 text-sm font-semibold text-[var(--md-text-primary)]">{awayName}</div>
             </div>
           </div>
         </div>
 
         {/* Countdown */}
         <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] p-3.5">
-          <div className="mb-2.5 text-center text-xs font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">До матча осталось</div>
+          <div className="mb-2.5 text-center text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
           {diff > 0 ? (
-            <div className="flex items-center justify-center gap-2">
+            <div className="flex items-center justify-center gap-6">
               <CountdownUnit value={countdown.d} label="дней" />
-              <span className="text-xl font-bold text-[var(--md-text-muted)]">:</span>
-              <CountdownUnit value={countdown.h} label="час" />
-              <span className="text-xl font-bold text-[var(--md-text-muted)]">:</span>
-              <CountdownUnit value={countdown.m} label="мин" />
-              <span className="text-xl font-bold text-[var(--md-text-muted)]">:</span>
-              <CountdownUnit value={countdown.s} label="сек" />
+              <div className="text-xl text-[var(--md-text-muted)]">:</div>
+              <CountdownUnit value={countdown.h} label="часов" />
+              <div className="text-xl text-[var(--md-text-muted)]">:</div>
+              <CountdownUnit value={countdown.m} label="минут" />
             </div>
           ) : (
             <div className="text-center text-xl font-bold text-[var(--md-dragons-orange)]">Матч начался</div>
           )}
-        </div>
-
-        {/* Ticket Tiers - Mobile scrollable */}
-        <div className="flex flex-wrap gap-2">
-          {TICKET_TIERS.map((tier) => (
-            <a
-              key={tier.id}
-              href={props.buyHref}
-              className={`${tier.className} flex-1 min-w-[calc(50%-0.25rem)] text-center`}
-            >
-              {tier.label}
-            </a>
-          ))}
         </div>
 
         {/* CTA Buttons */}
@@ -147,7 +133,7 @@ export function MatchCard(props: {
             href={props.buyHref}
             className="md-btn md-btn-primary md-btn-xl w-full"
           >
-            Купить от 100
+            Купить билеты
           </a>
           <a
             href={props.homeHref}
@@ -160,22 +146,19 @@ export function MatchCard(props: {
 
       {/* Desktop Layout */}
       <div className="hidden p-5 lg:block lg:p-6">
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-6">
-          {/* Left Column: Date + Meta */}
+        <div className="grid grid-cols-[1.2fr_1.8fr_1.2fr] items-center gap-5">
+          {/* Left Column: Meta Info */}
           <div className="space-y-1">
-            <div className="text-xl font-bold text-[var(--md-dragons-orange)]">{props.leftMetaLines[0]}</div>
+            <div className="text-xl font-bold text-[var(--md-text-primary)]">{props.leftMetaLines[0]}</div>
             <div className="text-sm text-[var(--md-text-muted)]">{props.leftMetaLines[1]}</div>
             <div className="text-sm text-[var(--md-text-muted)]">{props.leftMetaLines[2]}</div>
           </div>
 
           {/* Middle Column: Teams */}
-          <div className="rounded-xl bg-[var(--md-surface-2)] px-8 py-4">
-            <div className="flex items-center gap-6">
+          <div className="rounded-xl bg-[var(--md-surface-2)] p-4">
+            <div className="flex items-center justify-between gap-4">
               {/* Home Team */}
-              <div className="flex items-center gap-4">
-                <div className="text-right">
-                  <div className="text-lg font-bold uppercase text-[var(--md-text-primary)]">{homeName}</div>
-                </div>
+              <div className="flex min-w-0 flex-1 items-center gap-4">
                 <Image
                   src={CLUB_LOGO}
                   alt={homeName}
@@ -183,62 +166,57 @@ export function MatchCard(props: {
                   height={64}
                   className="h-16 w-16 shrink-0 object-contain"
                 />
+                <div className="min-w-0">
+                  <div className="text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">Хозяева</div>
+                  <div className="mt-0.5 truncate text-lg font-bold text-[var(--md-text-primary)]">{homeName}</div>
+                </div>
               </div>
 
               {/* VS */}
-              <div className="flex-shrink-0 text-lg font-bold text-[var(--md-text-muted)]">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--md-surface-3)] text-sm font-bold text-[var(--md-text-muted)]">
                 VS
               </div>
 
               {/* Away Team */}
-              <div className="flex items-center gap-4">
+              <div className="flex min-w-0 flex-1 items-center justify-end gap-4">
+                <div className="min-w-0 text-right">
+                  <div className="text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">Гости</div>
+                  <div className="mt-0.5 truncate text-lg font-bold text-[var(--md-text-primary)]">{awayName}</div>
+                </div>
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[var(--md-surface-3)] text-sm font-bold text-[var(--md-text-secondary)]">
                   {props.awayLogoText.slice(0, 4).toUpperCase()}
-                </div>
-                <div className="text-left">
-                  <div className="text-lg font-bold uppercase text-[var(--md-text-primary)]">{awayName}</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Countdown */}
-          <div className="text-right">
-            <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">До матча осталось</div>
-            {diff > 0 ? (
-              <div className="flex items-center justify-end gap-2">
-                <CountdownUnit value={countdown.d} label="дн" />
-                <span className="text-lg font-bold text-[var(--md-text-muted)]">:</span>
-                <CountdownUnit value={countdown.h} label="ч" />
-                <span className="text-lg font-bold text-[var(--md-text-muted)]">:</span>
-                <CountdownUnit value={countdown.m} label="м" />
-                <span className="text-lg font-bold text-[var(--md-text-muted)]">:</span>
-                <CountdownUnit value={countdown.s} label="с" />
-              </div>
-            ) : (
-              <div className="text-xl font-bold text-[var(--md-dragons-orange)]">Матч начался</div>
-            )}
-          </div>
-        </div>
+          {/* Right Column: Countdown + CTAs */}
+          <div className="space-y-3">
+            {/* Countdown */}
+            <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] p-3.5">
+              <div className="mb-2 text-center text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
+              {diff > 0 ? (
+                <div className="flex items-center justify-center gap-3">
+                  <CountdownUnit value={countdown.d} label="дн" />
+                  <span className="text-lg text-[var(--md-text-muted)]">:</span>
+                  <CountdownUnit value={countdown.h} label="ч" />
+                  <span className="text-lg text-[var(--md-text-muted)]">:</span>
+                  <CountdownUnit value={countdown.m} label="м" />
+                </div>
+              ) : (
+                <div className="text-center text-xl font-bold text-[var(--md-dragons-orange)]">Матч начался</div>
+              )}
+            </div>
 
-        {/* Ticket Tiers Row */}
-        <div className="mt-5 flex items-center justify-between gap-3 border-t border-[var(--md-border)] pt-5">
-          <div className="flex flex-wrap gap-2">
-            {TICKET_TIERS.map((tier) => (
-              <a
-                key={tier.id}
-                href={props.buyHref}
-                className={tier.className}
-              >
-                {tier.label}
+            {/* Buttons */}
+            <div className="flex flex-col gap-2.5">
+              <a href={props.buyHref} className="md-btn md-btn-primary md-btn-lg w-full">
+                Купить билеты
               </a>
-            ))}
-          </div>
-          <div className="flex items-center gap-3">
-            <a href={props.buyHref} className="md-btn md-btn-primary md-btn-lg">
-              Купить от 100
-            </a>
-            <div className="text-xs text-[var(--md-text-muted)]">Необходима<br/>Карта болельщика</div>
+              <a href={props.homeHref} className="md-btn md-btn-secondary w-full">
+                На главную
+              </a>
+            </div>
           </div>
         </div>
       </div>

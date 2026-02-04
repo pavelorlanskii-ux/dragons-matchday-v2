@@ -124,39 +124,26 @@ export function Header() {
   };
 
   return (
-    <header className="relative z-50 sticky top-0 border-b border-[var(--md-border)] bg-[var(--md-bg)]/95 backdrop-blur-lg">
-      <div className="mx-auto flex max-w-[var(--md-container)] items-center justify-between px-4 py-2.5 md:px-6 lg:px-8">
-        {/* Logo + Menu Toggle Container */}
-        <div className="flex items-center gap-3">
-          {/* Logo */}
-          <a
-            href="https://hc-dragons.com"
-            className="flex items-center gap-2.5 transition-opacity hover:opacity-80"
-            aria-label="ХК Шанхай Дрэгонс - На главную"
-          >
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-[var(--md-border)] bg-[var(--md-surface-1)]">
-              <Image
-                src={CLUB_LOGO}
-                alt="Шанхай Дрэгонс"
-                width={40}
-                height={40}
-                className="h-9 w-9 object-contain"
-              />
-            </div>
-          </a>
-          
-          {/* Menu Button - visible on mobile */}
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-10 items-center gap-2 rounded-lg border border-[var(--md-border)] bg-[var(--md-surface-1)] px-3 text-[var(--md-text-primary)] transition-colors hover:bg-[var(--md-surface-2)] lg:hidden"
-            aria-label={mobileOpen ? "Закрыть меню" : "Открыть меню"}
-            aria-expanded={mobileOpen}
-          >
-            <MenuIcon open={mobileOpen} />
-            <span className="text-xs font-semibold uppercase tracking-wide text-[var(--md-dragons-orange)]">Меню</span>
-          </button>
-        </div>
+    <header className="relative z-50 sticky top-0 border-b border-[var(--md-border)] bg-[var(--md-bg)]/90 backdrop-blur-lg">
+      <div className="mx-auto flex max-w-[var(--md-container)] items-center justify-between px-4 py-2 md:px-6 lg:px-8">
+        {/* Logo */}
+        <a
+          href="https://hc-dragons.com"
+          className="flex items-center gap-3 transition-opacity hover:opacity-80"
+          aria-label="ХК Шанхай Дрэгонс - На главную"
+        >
+          <Image
+            src={CLUB_LOGO}
+            alt="Шанхай Дрэгонс"
+            width={48}
+            height={48}
+            className="h-11 w-11 object-contain md:h-12 md:w-12"
+          />
+          <div className="hidden sm:block">
+            <div className="text-sm font-bold leading-tight text-[var(--md-text-primary)]">Шанхай</div>
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-[var(--md-dragons-orange)]">Дрэгонс</div>
+          </div>
+        </a>
 
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-0.5 lg:flex" aria-label="Основная навигация">
@@ -183,7 +170,7 @@ export function Header() {
               
               {openDropdown === group.label && (
                 <div className="absolute left-0 top-full z-50 min-w-[180px] pt-2">
-                  <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-1)] p-1.5 shadow-lg backdrop-blur-lg">
+                  <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-1)] p-1.5 shadow-lg">
                     {group.items.map((item) => (
                       <a
                         key={item.label}
@@ -250,22 +237,33 @@ export function Header() {
             className="flex h-9 items-center gap-1 rounded-lg border border-[var(--md-border)] px-2.5 text-sm font-medium text-[var(--md-text-secondary)] transition-colors hover:border-[var(--md-border-hover)] hover:bg-[var(--md-surface-1)]"
             aria-label={`Переключить язык на ${lang === "ru" ? "English" : "Русский"}`}
           >
-            {lang === "ru" ? "RU" : "EN"}
+            {lang === "ru" ? "Ru" : "En"}
             <ChevronDown />
           </button>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          type="button"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--md-text-primary)] transition-colors hover:bg-[var(--md-surface-1)] lg:hidden"
+          aria-label={mobileOpen ? "Закрыть меню" : "Открыть меню"}
+          aria-expanded={mobileOpen}
+        >
+          <MenuIcon open={mobileOpen} />
+        </button>
       </div>
 
       {/* Mobile Menu */}
       {mobileOpen && (
         <>
           <div
-            className="fixed inset-0 top-[65px] z-40 bg-[var(--md-bg)]/80 backdrop-blur-sm lg:hidden"
+            className="fixed inset-0 top-[57px] z-40 bg-[var(--md-bg)]/80 backdrop-blur-sm lg:hidden"
             onClick={() => setMobileOpen(false)}
             aria-hidden="true"
           />
           <nav
-            className="fixed left-0 right-0 top-[65px] z-50 max-h-[calc(100vh-65px)] overflow-y-auto border-b border-[var(--md-border)] bg-[var(--md-surface-1)] lg:hidden"
+            className="fixed left-0 right-0 top-[57px] z-50 max-h-[calc(100vh-57px)] overflow-y-auto border-b border-[var(--md-border)] bg-[var(--md-surface-1)] lg:hidden"
             aria-label="Мобильная навигация"
           >
             <div className="p-4">
