@@ -83,29 +83,30 @@ export function ActivityCardGrid({
         </div>
       </div>
 
-      {/* Cards grid - Mobile: 1 col, Tablet: 2 cols, Desktop: 4 cols */}
+      {/* Cards grid - 4 columns on desktop, 2 on tablet, 1 on mobile */}
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         {filtered.map((a: Activity) => (
           <article
             key={a.id}
             className="md-card group overflow-hidden transition-transform hover:-translate-y-0.5"
           >
-            {/* Image placeholder */}
-            <div className="relative aspect-[16/10] bg-[var(--md-surface-2)]" />
-            
-            {/* Content */}
-            <div className="p-4 sm:p-5">
-              {/* Badges */}
-              <div className="flex flex-wrap gap-1.5">
+            {/* Image placeholder with gradient overlay */}
+            <div className="relative aspect-[16/10] bg-gradient-to-br from-[var(--md-surface-2)] to-[var(--md-surface-3)]">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              {/* Badges positioned on image */}
+              <div className="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
                 {a.badges.map((b: ActivityBadge) => (
-                  <span key={b} className="md-badge md-badge-muted">
+                  <span key={b} className="rounded-md bg-[var(--md-dragons-orange)] px-2 py-1 text-[10px] font-semibold uppercase text-white">
                     {b}
                   </span>
                 ))}
               </div>
-
+            </div>
+            
+            {/* Content */}
+            <div className="p-4 sm:p-5">
               {/* Title */}
-              <h3 className="md-title-card mt-3 line-clamp-2 text-[var(--md-text-primary)]">
+              <h3 className="md-title-card line-clamp-2 text-[var(--md-text-primary)]">
                 {a.title}
               </h3>
               

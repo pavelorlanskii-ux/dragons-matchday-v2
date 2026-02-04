@@ -34,7 +34,7 @@ export default function Page() {
           aria-hidden="true"
         />
         {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-[#041525]/70" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[#041525]/75" aria-hidden="true" />
       </div>
 
       {/* Decorative Clouds */}
@@ -45,7 +45,7 @@ export default function Page() {
           alt=""
           width={280}
           height={180}
-          className="absolute -left-20 top-[15%] opacity-20"
+          className="absolute -left-20 top-[15%] opacity-15"
         />
         {/* Cloud bottom-right */}
         <Image
@@ -53,7 +53,7 @@ export default function Page() {
           alt=""
           width={320}
           height={200}
-          className="absolute -right-24 bottom-[20%] opacity-15"
+          className="absolute -right-24 bottom-[20%] opacity-10"
         />
         {/* Cloud middle-left */}
         <Image
@@ -75,7 +75,7 @@ export default function Page() {
       </div>
 
       <main id="main-content" className="relative z-10 flex-1">
-        {/* Hero Section - Poster-like with dynamic background */}
+        {/* Hero Section */}
         <HeroSection
           title="Вечер хоккея и шоу на арене"
           subtitle="Приезжайте заранее, чтобы успеть на активности, сделать фото и поймать правильное матчевое настроение."
@@ -93,55 +93,49 @@ export default function Page() {
           />
         </HeroSection>
 
-        {/* Main container for remaining content */}
-        <div className="mx-auto w-full max-w-[1200px] px-6 py-2 space-y-16">
-          {/* BetBoom Odds Section - Featured Partner Block */}
-          <section id="odds">
-            <PartnerOddsBar
-              partner={matchday.partner}
-              odds={matchday.odds}
-            />
-          </section>
+        {/* BetBoom Odds Section */}
+        <section id="odds" className="mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 lg:px-8">
+          <PartnerOddsBar
+            partner={matchday.partner}
+            odds={matchday.odds}
+          />
+        </section>
 
-          {/* Highlight Section */}
-          <section id="highlight">
-            <HighlightBanner highlight={matchday.highlight} />
-          </section>
+        {/* Highlight Section */}
+        <section id="highlight" className="mx-auto w-full max-w-[1200px] px-4 py-6 sm:px-6 lg:px-8">
+          <HighlightBanner highlight={matchday.highlight} />
+        </section>
 
-          {/* Program Section */}
-          <section id="program">
-            <SectionHeader
-              title="Программа вечера"
-              subtitle="Фильтруйте по интересам и ориентирам. Все активности работают в указанное время."
-            />
-            <div className="mt-6 md:mt-8">
-              <ActivityCardGrid
-                activities={matchday.activities}
-                tags={matchday.filters.tags}
-                badges={matchday.filters.badges}
-              />
-            </div>
-          </section>
-
-          {/* Partner Divider */}
-          <div className="md-partner-divider mx-auto mb-10 max-w-[200px] md:mb-14" aria-hidden="true" />
-
-          {/* Offers Section */}
-          <section id="offers">
+        {/* Offers Section - Full width dark bg */}
+        <section id="offers" className="py-12 md:py-16 lg:py-20">
+          <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
             <SectionHeader
               title="Специальные предложения"
               subtitle="Партнерские предложения и бонусы для болельщиков."
             />
-            <div className="mt-6 md:mt-8">
-              <OffersGrid offers={matchday.offers} partnerName={matchday.partner.name} />
-            </div>
-          </section>
+            <OffersGrid offers={matchday.offers} partnerName={matchday.partner.name} />
+          </div>
+        </section>
 
-          {/* CTA Section */}
-          <section id="tickets">
-            <CTASection />
-          </section>
-        </div>
+        {/* Program Section */}
+        <section id="program" className="py-12 md:py-16 lg:py-20">
+          <div className="mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8">
+            <SectionHeader
+              title="Программа вечера"
+              subtitle="Фильтруйте по интересам и ориентирам. Все активности работают в указанное время."
+            />
+            <ActivityCardGrid
+              activities={matchday.activities}
+              tags={matchday.filters.tags}
+              badges={matchday.filters.badges}
+            />
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section id="cta" className="mx-auto w-full max-w-[1200px] px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+          <CTASection />
+        </section>
       </main>
 
       <div className="relative z-10">
