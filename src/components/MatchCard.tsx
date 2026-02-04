@@ -68,7 +68,7 @@ export function MatchCard(props: {
   return (
     <article className={`md-card-hero overflow-hidden ${props.className || ""}`}>
       {/* Mobile Layout */}
-      <div className="flex flex-col gap-5 p-5 sm:p-6 lg:hidden">
+      <div className="flex flex-col gap-4 p-4 sm:p-5 lg:hidden">
         {/* Date / League / Arena */}
         <div className="space-y-1">
           <div className="text-lg font-bold text-[var(--md-text-primary)]">{props.leftMetaLines[0]}</div>
@@ -80,7 +80,7 @@ export function MatchCard(props: {
         </div>
 
         {/* Teams Block */}
-        <div className="rounded-xl bg-[var(--md-surface-2)] p-4">
+        <div className="rounded-xl bg-[var(--md-surface-2)] p-3.5">
           <div className="flex items-center justify-between gap-3">
             {/* Home Team */}
             <div className="flex min-w-0 flex-1 flex-col items-center text-center">
@@ -112,8 +112,8 @@ export function MatchCard(props: {
         </div>
 
         {/* Countdown */}
-        <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] p-4">
-          <div className="mb-3 text-center text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
+        <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] p-3.5">
+          <div className="mb-2.5 text-center text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
           {diff > 0 ? (
             <div className="flex items-center justify-center gap-6">
               <CountdownUnit value={countdown.d} label="дней" />
@@ -128,7 +128,7 @@ export function MatchCard(props: {
         </div>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2.5">
           <a
             href={props.buyHref}
             className="md-btn md-btn-primary md-btn-xl w-full"
@@ -145,8 +145,8 @@ export function MatchCard(props: {
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden p-6 lg:block lg:p-8">
-        <div className="grid grid-cols-[1.2fr_1.8fr_1.2fr] items-center gap-6">
+      <div className="hidden p-5 lg:block lg:p-6">
+        <div className="grid grid-cols-[1.2fr_1.8fr_1.2fr] items-center gap-5">
           {/* Left Column: Meta Info */}
           <div className="space-y-1">
             <div className="text-xl font-bold text-[var(--md-text-primary)]">{props.leftMetaLines[0]}</div>
@@ -155,7 +155,7 @@ export function MatchCard(props: {
           </div>
 
           {/* Middle Column: Teams */}
-          <div className="rounded-xl bg-[var(--md-surface-2)] p-5">
+          <div className="rounded-xl bg-[var(--md-surface-2)] p-4">
             <div className="flex items-center justify-between gap-4">
               {/* Home Team */}
               <div className="flex min-w-0 flex-1 items-center gap-4">
@@ -191,9 +191,9 @@ export function MatchCard(props: {
           </div>
 
           {/* Right Column: Countdown + CTAs */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             {/* Countdown */}
-            <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] p-4">
+            <div className="rounded-xl border border-[var(--md-border)] bg-[var(--md-surface-2)] p-3.5">
               <div className="mb-2 text-center text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
               {diff > 0 ? (
                 <div className="flex items-center justify-center gap-3">
@@ -209,7 +209,7 @@ export function MatchCard(props: {
             </div>
 
             {/* Buttons */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2.5">
               <a href={props.buyHref} className="md-btn md-btn-primary md-btn-lg w-full">
                 Купить билеты
               </a>

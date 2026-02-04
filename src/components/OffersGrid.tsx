@@ -42,7 +42,7 @@ export function OffersGrid(props: { offers?: Offer[]; partnerName?: string }) {
             )}
             
             {/* Title */}
-            <h3 className="mt-4 line-clamp-2 text-xl font-bold text-[var(--md-text-primary)] sm:text-2xl">
+            <h3 className="md-title-card mt-4 line-clamp-2 text-[var(--md-text-primary)]">
               {o.title}
             </h3>
             

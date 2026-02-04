@@ -94,9 +94,9 @@ export default function Page() {
         </HeroSection>
 
         {/* Main container for remaining content */}
-        <div className="md-container py-2">
+        <div className="mx-auto w-full max-w-[1200px] px-6 py-2 space-y-16">
           {/* BetBoom Odds Section - Featured Partner Block */}
-          <section className="md-section" id="odds">
+          <section id="odds">
             <PartnerOddsBar
               partner={matchday.partner}
               odds={matchday.odds}
@@ -104,12 +104,12 @@ export default function Page() {
           </section>
 
           {/* Highlight Section */}
-          <section className="md-section" id="highlight">
+          <section id="highlight">
             <HighlightBanner highlight={matchday.highlight} />
           </section>
 
           {/* Program Section */}
-          <section className="md-section" id="program">
+          <section id="program">
             <SectionHeader
               title="Программа вечера"
               subtitle="Фильтруйте по интересам и ориентирам. Все активности работают в указанное время."
@@ -127,7 +127,7 @@ export default function Page() {
           <div className="md-partner-divider mx-auto mb-10 max-w-[200px] md:mb-14" aria-hidden="true" />
 
           {/* Offers Section */}
-          <section className="md-section" id="offers">
+          <section id="offers">
             <SectionHeader
               title="Специальные предложения"
               subtitle="Партнерские предложения и бонусы для болельщиков."
@@ -138,7 +138,7 @@ export default function Page() {
           </section>
 
           {/* CTA Section */}
-          <section className="mb-8 md:mb-12" id="tickets">
+          <section id="tickets">
             <CTASection />
           </section>
         </div>

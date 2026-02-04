@@ -50,7 +50,7 @@ export function ActivityCardGrid({
       <div className="flex flex-col gap-4 sm:gap-5">
         {/* Interests filter */}
         <div>
-          <div className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">Интересы</div>
+          <div className="md-label mb-2.5 text-xs font-semibold text-[var(--md-text-muted)]">Интересы</div>
           <div className="overflow-x-auto pb-2 md-scrollbar-hide">
             <div className="flex min-w-max gap-2">
               <Chip active={tag === "Все"} onClick={() => setTag("Все")}>
@@ -67,7 +67,7 @@ export function ActivityCardGrid({
 
         {/* Badges filter */}
         <div>
-          <div className="mb-2.5 text-xs font-semibold uppercase tracking-wider text-[var(--md-text-muted)]">Ориентиры</div>
+          <div className="md-label mb-2.5 text-xs font-semibold text-[var(--md-text-muted)]">Ориентиры</div>
           <div className="overflow-x-auto pb-2 md-scrollbar-hide">
             <div className="flex min-w-max gap-2">
               <Chip active={badge === "Все"} onClick={() => setBadge("Все")}>
@@ -105,7 +105,7 @@ export function ActivityCardGrid({
               </div>
 
               {/* Title */}
-              <h3 className="mt-3 line-clamp-2 text-base font-semibold leading-snug text-[var(--md-text-primary)]">
+              <h3 className="md-title-card mt-3 line-clamp-2 text-[var(--md-text-primary)]">
                 {a.title}
               </h3>
               

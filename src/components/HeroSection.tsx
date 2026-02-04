@@ -9,14 +9,14 @@ type HeroSectionProps = {
 
 export function HeroSection({ title, subtitle, partnerName, children }: HeroSectionProps) {
   return (
-    <section className="relative py-8 md:py-12 lg:py-16" id="tickets">
+    <section className="relative pt-16 pb-8 md:pt-24 md:pb-10 lg:pb-12" id="tickets">
       {/* Content */}
       <div className="md-container relative z-10">
-        <div className="flex flex-col gap-8 lg:gap-10">
+        <div className="flex flex-col">
           {/* Text Block */}
-          <div className="max-w-3xl">
+          <div className="max-w-3xl space-y-4 md:space-y-5">
             {/* Partner Badge in Hero */}
-            <div className="mb-4 inline-flex items-center gap-2">
+            <div className="inline-flex items-center gap-2">
               <span className="md-badge md-badge-partner">
                 <svg 
                   className="mr-1.5 h-3 w-3" 
@@ -38,13 +38,13 @@ export function HeroSection({ title, subtitle, partnerName, children }: HeroSect
             </h1>
             
             {/* Subtitle */}
-            <p className="mt-4 max-w-2xl text-pretty text-base leading-relaxed text-[var(--md-text-secondary)] md:mt-5 md:text-lg">
+            <p className="max-w-2xl text-pretty text-base leading-snug text-[var(--md-text-secondary)] md:text-lg md:leading-snug">
               {subtitle}
             </p>
           </div>
 
           {/* Match Card */}
-          <div>
+          <div className="mt-10 md:mt-14">
             {children}
           </div>
         </div>
