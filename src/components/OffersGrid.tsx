@@ -1,35 +1,68 @@
 import type { Offer } from "@/data/matchday";
 
-export function OffersGrid(props: { offers?: Offer[] }) {
-  // Безопасная обработка: если offers не передан или пустой, не рендерим
+export function OffersGrid(props: { offers?: Offer[]; partnerName?: string }) {
   const offers = props.offers ?? [];
+  const partnerName = props.partnerName ?? "BetBoom";
+  
   if (offers.length === 0) {
     return null;
   }
 
   return (
-    <section className="mt-6">
-      <div className="grid gap-4 sm:gap-6 md:grid-cols-2">
-        {offers.map((o) => (
-          <article key={o.id} className="group rounded-[var(--radius-card)] border border-[var(--border-default)] bg-[var(--bg-surface)] p-5 shadow-[var(--shadow-card)] transition-all hover:border-[var(--border-hover)] hover:shadow-[var(--shadow-card-hover)] sm:p-6 md:p-8">
+    <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
+      {offers.map((o) => {
+        // Check if this offer is from the partner
+        const isPartnerOffer = o.badge?.toLowerCase().includes(partnerName.toLowerCase()) || 
+                               o.badge?.toLowerCase().includes("betboom") ||
+                               o.title?.toLowerCase().includes("betboom") ||
+                               o.title?.toLowerCase().includes("фрибет");
+
+        return (
+          <article 
+            key={o.id} 
+            className={`flex flex-col overflow-hidden ${isPartnerOffer ? "md-card-featured" : "md-card"} p-5 sm:p-6 md:p-7`}
+          >
+            {/* Badge */}
             {o.badge && (
-              <div className="inline-flex rounded-full border border-[var(--brand-yellow)]/30 bg-[var(--brand-yellow)]/10 px-3 py-1.5 text-xs font-semibold text-[var(--brand-yellow)]">
+              <div className={`inline-flex w-fit ${isPartnerOffer ? "md-badge md-badge-partner" : "md-badge md-badge-yellow"}`}>
+                {isPartnerOffer && (
+                  <svg 
+                    className="mr-1.5 h-3 w-3" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+                  </svg>
+                )}
                 {o.badge}
               </div>
             )}
-            <h3 className="mt-4 line-clamp-2 text-xl font-bold text-[var(--text-primary)] sm:text-2xl">{o.title}</h3>
-            <p className="mt-3 line-clamp-4 text-sm leading-relaxed text-[var(--text-secondary)] sm:text-base">{o.description}</p>
+            
+            {/* Title */}
+            <h3 className="mt-4 line-clamp-2 text-xl font-bold text-[var(--md-text-primary)] sm:text-2xl">
+              {o.title}
+            </h3>
+            
+            {/* Description */}
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-[var(--md-text-secondary)] sm:text-base">
+              {o.description}
+            </p>
+            
+            {/* CTA */}
             {o.link && (
               <a
                 href={o.link.href}
-                className="mt-5 inline-flex h-12 w-full items-center justify-center rounded-[var(--radius-button)] bg-[var(--brand-turquoise)] text-sm font-semibold text-[var(--bg-primary)] transition-all hover:bg-[var(--brand-turquoise-dark)] hover:shadow-lg active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[var(--brand-turquoise)] focus:ring-offset-2 focus:ring-offset-[var(--bg-surface)] sm:w-auto sm:px-6"
+                className={`mt-5 w-full sm:w-auto ${isPartnerOffer ? "md-btn md-btn-partner md-btn-lg" : "md-btn md-btn-accent md-btn-lg"}`}
               >
                 {o.link.label}
               </a>
             )}
           </article>
-        ))}
-      </div>
-    </section>
+        );
+      })}
+    </div>
   );
 }

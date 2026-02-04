@@ -8,7 +8,32 @@ function formatCountdown(ms: number) {
   const d = Math.floor(total / 86400);
   const h = Math.floor((total % 86400) / 3600);
   const m = Math.floor((total % 3600) / 60);
-  return `${d}д ${h}ч ${m}м`;
+  
+  if (d > 0) return `${d}д ${h}ч ${m}м`;
+  if (h > 0) return `${h}ч ${m}м`;
+  return `${m}м`;
+}
+
+function CountdownUnit({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="flex flex-col items-center">
+      <span className="text-2xl font-bold tabular-nums text-[var(--md-dragons-turq)] sm:text-3xl lg:text-4xl">
+        {value}
+      </span>
+      <span className="mt-1 text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)] sm:text-xs">
+        {label}
+      </span>
+    </div>
+  );
+}
+
+function parseCountdown(ms: number) {
+  if (ms <= 0) return { d: "0", h: "0", m: "0" };
+  const total = Math.floor(ms / 1000);
+  const d = Math.floor(total / 86400);
+  const h = Math.floor((total % 86400) / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  return { d: String(d), h: String(h), m: String(m) };
 }
 
 export function MatchCard(props: {
@@ -31,127 +56,159 @@ export function MatchCard(props: {
   }, []);
 
   const diff = target - now;
+  const countdown = parseCountdown(diff);
 
-  // Безопасный split для названий команд
   const titleParts = props.title.split(" - ");
   const homeName = titleParts[0] ?? props.title;
   const awayName = titleParts[1] ?? "";
 
   return (
-    <section className={`rounded-[var(--radius-card)] border border-[var(--border-default)] bg-[var(--bg-surface)] p-4 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-card-hover)] sm:p-6 md:p-8 ${props.className || ""}`}>
-      {/* Mobile: Stacked layout */}
-      <div className="flex flex-col gap-4 md:hidden">
-        {/* Date/League/Arena */}
-        <div className="space-y-1.5">
-          <div className="text-base font-semibold text-[var(--text-primary)]">{props.leftMetaLines[0]}</div>
-          <div className="text-sm text-[var(--text-muted)]">{props.leftMetaLines[1]}</div>
-          <div className="text-sm text-[var(--text-muted)]">{props.leftMetaLines[2]}</div>
+    <article className={`md-card-hero overflow-hidden ${props.className || ""}`}>
+      {/* Mobile Layout */}
+      <div className="flex flex-col gap-5 p-5 sm:p-6 lg:hidden">
+        {/* Date / League / Arena */}
+        <div className="space-y-1">
+          <div className="text-lg font-bold text-[var(--md-text-primary)]">{props.leftMetaLines[0]}</div>
+          <div className="flex flex-wrap items-center gap-2 text-sm text-[var(--md-text-muted)]">
+            <span>{props.leftMetaLines[1]}</span>
+            <span className="h-1 w-1 rounded-full bg-[var(--md-text-muted)]" aria-hidden="true" />
+            <span>{props.leftMetaLines[2]}</span>
+          </div>
         </div>
 
-        {/* Teams - Compact horizontal */}
-        <div className="rounded-[var(--radius-lg)] bg-[var(--bg-secondary)] p-4">
+        {/* Teams Block */}
+        <div className="rounded-xl bg-[var(--md-surface-2)] p-4">
           <div className="flex items-center justify-between gap-3">
-            <div className="flex min-w-0 items-center gap-2">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--bg-surface)] text-xs font-bold text-[var(--text-primary)]">
-                {props.homeLogoText}
+            {/* Home Team */}
+            <div className="flex min-w-0 flex-1 flex-col items-center text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-turq)]/5 text-xs font-bold text-[var(--md-dragons-turq)]">
+                {props.homeLogoText.slice(0, 3).toUpperCase()}
               </div>
-              <div className="min-w-0">
-                <div className="truncate text-xs text-[var(--text-muted)]">Хозяева</div>
-                <div className="truncate text-sm font-semibold text-[var(--text-primary)]">{homeName}</div>
-              </div>
+              <div className="mt-2 text-[10px] font-medium uppercase tracking-wide text-[var(--md-text-muted)]">Хозяева</div>
+              <div className="mt-0.5 line-clamp-2 text-sm font-semibold text-[var(--md-text-primary)]">{homeName}</div>
             </div>
 
-            <div className="px-2 text-base font-semibold text-[var(--text-muted)]">-</div>
+            {/* VS */}
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--md-surface-3)] text-sm font-bold text-[var(--md-text-muted)]">
+              VS
+            </div>
 
-            <div className="flex min-w-0 items-center gap-2">
-              <div className="min-w-0 text-right">
-                <div className="truncate text-xs text-[var(--text-muted)]">Гости</div>
-                <div className="truncate text-sm font-semibold text-[var(--text-primary)]">{awayName}</div>
+            {/* Away Team */}
+            <div className="flex min-w-0 flex-1 flex-col items-center text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-[var(--md-surface-3)] text-xs font-bold text-[var(--md-text-secondary)]">
+                {props.awayLogoText.slice(0, 4).toUpperCase()}
               </div>
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--bg-surface)] text-xs font-bold text-[var(--text-primary)]">
-                {props.awayLogoText}
-              </div>
+              <div className="mt-2 text-[10px] font-medium uppercase tracking-wide text-[var(--md-text-muted)]">Гости</div>
+              <div className="mt-0.5 line-clamp-2 text-sm font-semibold text-[var(--md-text-primary)]">{awayName}</div>
             </div>
           </div>
         </div>
 
         {/* Countdown */}
-        <div className="rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-[var(--bg-secondary)] p-4">
-          <div className="text-xs font-medium text-[var(--text-muted)]">До матча осталось</div>
-          <div className="mt-1 text-xl font-bold text-[var(--text-primary)]">{formatCountdown(diff)}</div>
+        <div className="rounded-xl border border-[var(--md-dragons-turq)]/20 bg-[var(--md-surface-2)] p-4">
+          <div className="mb-3 text-center text-xs font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
+          {diff > 0 ? (
+            <div className="flex items-center justify-center gap-6">
+              <CountdownUnit value={countdown.d} label="дней" />
+              <div className="text-xl text-[var(--md-text-muted)]">:</div>
+              <CountdownUnit value={countdown.h} label="часов" />
+              <div className="text-xl text-[var(--md-text-muted)]">:</div>
+              <CountdownUnit value={countdown.m} label="минут" />
+            </div>
+          ) : (
+            <div className="text-center text-xl font-bold text-[var(--md-dragons-turq)]">Матч начался</div>
+          )}
         </div>
 
-        {/* Partner badge */}
-        <div className="inline-flex w-fit items-center gap-2 rounded-full border border-[var(--border-default)] bg-[var(--bg-secondary)] px-3 py-1.5 text-xs text-[var(--text-muted)]">
-          Партнер матча: <span className="font-semibold text-[var(--text-secondary)]">{props.partnerName}</span>
+        {/* CTA Buttons */}
+        <div className="flex flex-col gap-3">
+          <a
+            href={props.buyHref}
+            className="md-btn md-btn-primary md-btn-xl w-full"
+          >
+            Купить билеты
+          </a>
+          <a
+            href={props.homeHref}
+            className="md-btn md-btn-secondary md-btn-lg w-full"
+          >
+            На главную
+          </a>
         </div>
-
-        {/* Primary CTA */}
-        <a
-          href={props.buyHref}
-          className="inline-flex h-12 items-center justify-center rounded-[var(--radius-button)] bg-[var(--brand-yellow)] text-sm font-semibold text-[var(--bg-primary)] transition-all hover:bg-[var(--brand-yellow-dark)] hover:shadow-lg active:scale-[0.98]"
-        >
-          Купить билеты
-        </a>
       </div>
 
-      {/* Desktop: Grid layout */}
-      <div className="hidden gap-6 md:grid md:grid-cols-[1.1fr_2fr_1.2fr] md:items-center">
-        <div className="space-y-2 text-[var(--text-secondary)]">
-          <div className="text-base font-medium">{props.leftMetaLines[0]}</div>
-          <div className="text-sm text-[var(--text-muted)]">{props.leftMetaLines[1]}</div>
-          <div className="text-sm text-[var(--text-muted)]">{props.leftMetaLines[2]}</div>
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--border-default)] bg-[var(--bg-secondary)] px-4 py-1.5 text-xs text-[var(--text-muted)]">
-            Партнер матча: <span className="font-semibold text-[var(--text-secondary)]">{props.partnerName}</span>
+      {/* Desktop Layout */}
+      <div className="hidden p-6 lg:block lg:p-8">
+        <div className="grid grid-cols-[1.2fr_1.8fr_1.2fr] items-center gap-6">
+          {/* Left Column: Meta Info */}
+          <div className="space-y-1">
+            <div className="text-xl font-bold text-[var(--md-text-primary)]">{props.leftMetaLines[0]}</div>
+            <div className="text-sm text-[var(--md-text-muted)]">{props.leftMetaLines[1]}</div>
+            <div className="text-sm text-[var(--md-text-muted)]">{props.leftMetaLines[2]}</div>
           </div>
-        </div>
 
-        <div className="rounded-[var(--radius-lg)] bg-[var(--bg-secondary)] p-5">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex min-w-0 items-center gap-3">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--bg-surface)] text-sm font-bold text-[var(--text-primary)]">
-                {props.homeLogoText}
+          {/* Middle Column: Teams */}
+          <div className="rounded-xl bg-[var(--md-surface-2)] p-5">
+            <div className="flex items-center justify-between gap-4">
+              {/* Home Team */}
+              <div className="flex min-w-0 flex-1 items-center gap-4">
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[var(--md-dragons-turq)]/20 to-[var(--md-dragons-turq)]/5 text-sm font-bold text-[var(--md-dragons-turq)]">
+                  {props.homeLogoText.slice(0, 3).toUpperCase()}
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">Хозяева</div>
+                  <div className="mt-0.5 truncate text-lg font-bold text-[var(--md-text-primary)]">{homeName}</div>
+                </div>
               </div>
-              <div className="min-w-0">
-                <div className="truncate text-xs text-[var(--text-muted)]">Хозяева</div>
-                <div className="truncate text-lg font-semibold text-[var(--text-primary)]">{homeName}</div>
+
+              {/* VS */}
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-[var(--md-surface-3)] text-sm font-bold text-[var(--md-text-muted)]">
+                VS
+              </div>
+
+              {/* Away Team */}
+              <div className="flex min-w-0 flex-1 items-center justify-end gap-4">
+                <div className="min-w-0 text-right">
+                  <div className="text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">Гости</div>
+                  <div className="mt-0.5 truncate text-lg font-bold text-[var(--md-text-primary)]">{awayName}</div>
+                </div>
+                <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-xl bg-[var(--md-surface-3)] text-sm font-bold text-[var(--md-text-secondary)]">
+                  {props.awayLogoText.slice(0, 4).toUpperCase()}
+                </div>
               </div>
             </div>
-
-            <div className="px-4 text-xl font-semibold text-[var(--text-muted)]">-</div>
-
-            <div className="flex min-w-0 items-center justify-end gap-3">
-              <div className="min-w-0 text-right">
-                <div className="truncate text-xs text-[var(--text-muted)]">Гости</div>
-                <div className="truncate text-lg font-semibold text-[var(--text-primary)]">{awayName}</div>
-              </div>
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--radius-md)] bg-[var(--bg-surface)] text-sm font-bold text-[var(--text-primary)]">
-                {props.awayLogoText}
-              </div>
-            </div>
           </div>
-        </div>
 
-        <div className="rounded-[var(--radius-lg)] border border-[var(--border-default)] bg-[var(--bg-secondary)] p-5">
-          <div className="text-sm font-medium text-[var(--text-muted)]">До матча осталось</div>
-          <div className="mt-2 text-2xl font-bold text-[var(--text-primary)]">{formatCountdown(diff)}</div>
+          {/* Right Column: Countdown + CTAs */}
+          <div className="space-y-4">
+            {/* Countdown */}
+            <div className="rounded-xl border border-[var(--md-dragons-turq)]/20 bg-[var(--md-surface-2)] p-4">
+              <div className="mb-2 text-center text-[10px] font-medium uppercase tracking-wider text-[var(--md-text-muted)]">До матча</div>
+              {diff > 0 ? (
+                <div className="flex items-center justify-center gap-3">
+                  <CountdownUnit value={countdown.d} label="дн" />
+                  <span className="text-lg text-[var(--md-text-muted)]">:</span>
+                  <CountdownUnit value={countdown.h} label="ч" />
+                  <span className="text-lg text-[var(--md-text-muted)]">:</span>
+                  <CountdownUnit value={countdown.m} label="м" />
+                </div>
+              ) : (
+                <div className="text-center text-xl font-bold text-[var(--md-dragons-turq)]">Матч начался</div>
+              )}
+            </div>
 
-          <div className="mt-6 flex flex-col gap-3">
-            <a
-              href={props.buyHref}
-              className="inline-flex h-12 items-center justify-center rounded-[var(--radius-button)] bg-[var(--brand-yellow)] px-6 text-sm font-semibold text-[var(--bg-primary)] transition-all hover:bg-[var(--brand-yellow-dark)] hover:shadow-lg active:scale-[0.98]"
-            >
-              Купить билеты
-            </a>
-            <a
-              href={props.homeHref}
-              className="inline-flex h-12 items-center justify-center rounded-[var(--radius-button)] border border-[var(--border-default)] bg-transparent px-6 text-sm font-semibold text-[var(--text-secondary)] transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] active:scale-[0.98]"
-            >
-              На главную
-            </a>
+            {/* Buttons */}
+            <div className="flex flex-col gap-2">
+              <a href={props.buyHref} className="md-btn md-btn-primary md-btn-lg w-full">
+                Купить билеты
+              </a>
+              <a href={props.homeHref} className="md-btn md-btn-secondary w-full">
+                На главную
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </article>
   );
 }

@@ -1,24 +1,48 @@
-export function HighlightBanner(props: { highlight?: { title?: string; badge?: string; description?: string; image?: string } }) {
-  // Безопасная обработка: если highlight не передан или пустой, не рендерим
+export function HighlightBanner(props: { 
+  highlight?: { 
+    title?: string; 
+    badge?: string; 
+    description?: string; 
+    image?: string 
+  } 
+}) {
   if (!props.highlight || !props.highlight.title) {
     return null;
   }
 
   return (
-    <section className="rounded-[var(--radius-card)] border border-[var(--border-default)] bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg-secondary)] p-5 shadow-[var(--shadow-card)] sm:p-6 md:p-8">
-      {props.highlight.badge && (
-        <div className="inline-flex rounded-full border border-[var(--brand-turquoise)]/30 bg-[var(--brand-turquoise)]/10 px-3 py-1.5 text-xs font-semibold text-[var(--brand-turquoise)] sm:px-4">
-          {props.highlight.badge}
+    <article className="md-card overflow-hidden">
+      <div className="relative p-5 sm:p-6 md:p-8">
+        {/* Subtle background accent */}
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: "radial-gradient(ellipse at top right, rgba(0, 212, 255, 0.08) 0%, transparent 60%)"
+          }}
+          aria-hidden="true"
+        />
+        
+        <div className="relative">
+          {/* Badge */}
+          {props.highlight.badge && (
+            <span className="md-badge md-badge-turq">
+              {props.highlight.badge}
+            </span>
+          )}
+          
+          {/* Title */}
+          <h2 className="md-headline-section mt-4 text-balance text-[var(--md-text-primary)]">
+            {props.highlight.title}
+          </h2>
+          
+          {/* Description */}
+          {props.highlight.description && (
+            <p className="mt-4 max-w-3xl text-pretty text-sm leading-relaxed text-[var(--md-text-secondary)] sm:text-base md:text-lg">
+              {props.highlight.description}
+            </p>
+          )}
         </div>
-      )}
-      <h2 className="mt-4 text-2xl font-bold leading-tight tracking-tight text-[var(--text-primary)] sm:text-3xl md:text-4xl">
-        {props.highlight.title}
-      </h2>
-      {props.highlight.description && (
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-[var(--text-secondary)] sm:mt-4 sm:text-base md:text-lg">
-          {props.highlight.description}
-        </p>
-      )}
-    </section>
+      </div>
+    </article>
   );
 }

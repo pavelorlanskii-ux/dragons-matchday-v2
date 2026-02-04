@@ -1,24 +1,58 @@
 export function CTASection() {
   return (
-    <section className="rounded-[var(--radius-card)] border border-[var(--border-default)] bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg-secondary)] p-5 shadow-[var(--shadow-card)] sm:p-6 md:p-8">
-      <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between md:gap-6">
-        <div>
-          <div className="text-xl font-bold text-[var(--text-primary)] sm:text-2xl md:text-3xl">Увидимся на арене</div>
-          <div className="mt-2 text-sm text-[var(--text-secondary)] sm:text-base md:text-lg">Приходите заранее, чтобы все успеть</div>
-        </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <a
-            href="#tickets"
-            className="inline-flex h-12 items-center justify-center rounded-[var(--radius-button)] bg-[var(--brand-yellow)] px-6 text-sm font-semibold text-[var(--bg-primary)] transition-all hover:bg-[var(--brand-yellow-dark)] hover:shadow-lg active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[var(--brand-yellow)] focus:ring-offset-2 focus:ring-offset-[var(--bg-surface)]"
-          >
-            Купить билеты
-          </a>
-          <a
-            href="/"
-            className="inline-flex h-12 items-center justify-center rounded-[var(--radius-button)] border border-[var(--border-default)] bg-transparent px-6 text-sm font-semibold text-[var(--text-secondary)] transition-all hover:border-[var(--border-hover)] hover:bg-[var(--bg-surface-hover)] active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-[var(--border-default)] focus:ring-offset-2 focus:ring-offset-[var(--bg-surface)]"
-          >
-            На главную
-          </a>
+    <section className="md-card-hero relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 60%)"
+          }}
+          aria-hidden="true"
+        />
+        {/* Diagonal accent */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `repeating-linear-gradient(
+              -45deg,
+              transparent,
+              transparent 30px,
+              var(--md-dragons-turq) 30px,
+              var(--md-dragons-turq) 31px
+            )`
+          }}
+          aria-hidden="true"
+        />
+      </div>
+      
+      <div className="relative p-6 sm:p-8 md:p-10">
+        <div className="flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+          {/* Text */}
+          <div>
+            <h2 className="md-headline-section text-balance text-[var(--md-text-primary)]">
+              Увидимся на арене
+            </h2>
+            <p className="mt-2 text-base text-[var(--md-text-secondary)] sm:text-lg">
+              Приходите заранее, чтобы всё успеть
+            </p>
+          </div>
+          
+          {/* Buttons */}
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <a
+              href="#tickets"
+              className="md-btn md-btn-primary md-btn-xl w-full sm:w-auto"
+            >
+              Купить билеты
+            </a>
+            <a
+              href="https://hc-dragons.com"
+              className="md-btn md-btn-secondary md-btn-lg w-full sm:w-auto"
+            >
+              На главную
+            </a>
+          </div>
         </div>
       </div>
     </section>
