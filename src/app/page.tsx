@@ -144,3 +144,6 @@ export default function Page() {
     </div>
   );
 }
+<div className="mt-8 text-xs opacity-60">
+  build: 2026-02-04
+</div>
